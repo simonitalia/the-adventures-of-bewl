@@ -15,13 +15,20 @@ struct AdventuresView: View {
     var body: some View {
         
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(adventures.list) { adventure in
-                        AdventureItemView(name: adventure.name)
+            
+            ZStack {
+                Color.black
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 15) {
+                        ForEach(adventures.list) { adventure in
+                            AdventureItemView(adventure: adventure)
+                        }
                     }
                 }
             }
+            
+            .navigationTitle("Adventures")
         }
     }
 }
