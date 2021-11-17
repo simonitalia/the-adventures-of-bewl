@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct AdventuresView: View {
-    
-    let adventures = Adventures().list
+
+    //        let adventures = Adventures().list
+    let columns = [GridItem(.flexible())]
     
     var body: some View {
         
-        let columns = [GridItem(.flexible())]
-        
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                  Text("Hello World")
-               }
+                LazyVGrid(columns: columns, spacing: 10) {
+                    AdventureItemView()
+                    AdventureItemView()
+                    AdventureItemView()
+                    AdventureItemView()
+                }
             }
         }
     }

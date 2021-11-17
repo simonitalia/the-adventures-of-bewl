@@ -12,6 +12,7 @@ struct OwlAdventuresApp: App {
     var body: some Scene {
         WindowGroup {
             AdventuresView()
+                .background(Color.black)
         }
     }
 }
