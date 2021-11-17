@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct OwlAdventuresApp: App {
+    
+    @StateObject var adventures = Adventures()
+    
     var body: some Scene {
         WindowGroup {
             AdventuresView()
-                .background(Color.black)
+                .environmentObject(adventures)
         }
     }
 }

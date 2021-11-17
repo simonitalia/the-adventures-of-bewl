@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdventuresView: View {
 
-    //        let adventures = Adventures().list
+    @EnvironmentObject var adventures: Adventures
     let columns = [GridItem(.flexible())]
     
     var body: some View {
@@ -17,10 +17,9 @@ struct AdventuresView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    AdventureItemView()
-                    AdventureItemView()
-                    AdventureItemView()
-                    AdventureItemView()
+                    ForEach(adventures.list) { adventure in
+                        AdventureItemView(name: adventure.name)
+                    }
                 }
             }
         }
@@ -30,5 +29,6 @@ struct AdventuresView: View {
 struct AdventuresView_Previews: PreviewProvider {
     static var previews: some View {
         AdventuresView()
+            .environmentObject(Adventures())
     }
 }

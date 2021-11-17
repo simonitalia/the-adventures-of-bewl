@@ -12,7 +12,7 @@ enum AssetType: String {
     case image = "png", playlist = "m4a"
 }
 
-enum AssetFilename: String {
+enum AssetFilename: String, CaseIterable {
     case classical = "Classical", nature = "Nature", cinematic = "Cinematic"
 }
 
@@ -35,21 +35,21 @@ struct Adventure: Identifiable {
     let moods: [String]
 }
 
-struct Adventures {
+class Adventures: ObservableObject {
     var list = [Adventure]()
     
     // construct list on initialilization
     init() {
         
-        Adventure.Name.allCases.forEach { name in
+        AssetFilename.allCases.forEach { filename in
             
-            let playlistUrl = getAssetUrl(adventure: name, assetType: .playlist)
-            let imageUrl = getAssetUrl(adventure: name, assetType: .image)
+            let playlistUrl = getAssetUrl(forAsset: filename, assetType: .playlist)
+            let imageUrl = getAssetUrl(forAsset: filename, assetType: .image)
             
-            switch name {
+            switch filename {
             case .classical:
                 let adventure = Adventure(
-                    name: name.rawValue,
+                    name: Adventure.Name.classical.rawValue,
                     playlistUrl: playlistUrl,
                     imageUrl: imageUrl,
                     moods: Adventure.MoodTags.classical)
@@ -57,7 +57,7 @@ struct Adventures {
                 
             case .nature:
                 let adventure = Adventure(
-                    name: name.rawValue,
+                    name: Adventure.Name.nature.rawValue,
                     playlistUrl: playlistUrl,
                     imageUrl: imageUrl,
                     moods: Adventure.MoodTags.nature)
@@ -65,7 +65,7 @@ struct Adventures {
                 
             case .cinematic:
                 let adventure = Adventure(
-                    name: name.rawValue,
+                    name: Adventure.Name.cinematic.rawValue,
                     playlistUrl: playlistUrl,
                     imageUrl: imageUrl,
                     moods: Adventure.MoodTags.cinematic)
@@ -74,9 +74,22 @@ struct Adventures {
         }
     }
     
-    private func getAssetUrl(adventure: Adventure.Name, assetType: AssetType) -> URL {
+    private func getAssetUrl(forAsset: AssetFilename, assetType: AssetType) -> URL {
+        
+//        let assetUrl: URL?
+//
+//        switch adventure {
+//
+//        case .classical:
+//            assetUrl = Bundle.main.url(forResource: adventure.rawValue, withExtension: assetType.rawValue)
+//
+//        case .nature:
+//            <#code#>
+//        case .cinematic:
+//            <#code#>
+//        }
 
-        guard let assetUrl = Bundle.main.url(forResource: adventure.rawValue, withExtension: assetType.rawValue) else {
+        guard let assetUrl = Bundle.main.url(forResource: forAsset.rawValue, withExtension: assetType.rawValue) else {
             fatalError("Asset url not found!!")
                 // force app crash as asset url is required
         }
