@@ -14,6 +14,8 @@ struct AdventureItemView: View {
     var body: some View {
         
         ZStack {
+            
+            // background image
             Image(adventure.imageFilename)
                 .resizable()
                 .scaledToFill()
