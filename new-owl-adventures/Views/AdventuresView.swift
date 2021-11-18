@@ -10,8 +10,6 @@ import SwiftUI
 struct AdventuresView: View {
     
     @EnvironmentObject var adventures: Adventures
-    @State var isShowingAdventureView = false
-    @State var isShowingSuccessView = false
     @State var searchText = ""
     @State var selectedMood = Tags.all
     @State var searching = false
@@ -48,16 +46,10 @@ struct AdventuresView: View {
                             if adventure.moods.contains(selectedMood.rawValue)
                                 && (adventure.name.localizedCaseInsensitiveContains(searchText)
                                 || adventure.description.localizedCaseInsensitiveContains(searchText)
-                                || adventure.moods.map({ $0.localizedCaseInsensitiveContains(searchText)}).contains(true)
+                                    || adventure.moods.map({ $0.localizedCaseInsensitiveContains(searchText)}).contains(true)
                                 || searchText == "") {
-                                NavigationLink(destination: AdventureView(isShowingSuccessView: $isShowingSuccessView, currentAdventure: adventure), isActive: $isShowingAdventureView) {
-                                AdventureItemView(
-                                    isShowingAdventureView: $isShowingAdventureView,
-                                    currentAdventure: adventure,
-                                    name: adventure.name,
-                                    description: adventure.description,
-                                    backgroundImage: adventure.image
-                                )
+                                NavigationLink(destination: Text("AdventureView")) {
+                                AdventureItemView(adventure: adventure)
                                 }
                             }
                         }
@@ -80,10 +72,10 @@ extension UIApplication {
     }
 }
 
-struct AdventuresView_Previews: PreviewProvider {
-    static var previews: some View {
-        AdventuresView()
-            .preferredColorScheme(.dark)
-            .environmentObject(Adventures())
-    }
-}
+//struct AdventuresView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AdventuresView()
+//            .preferredColorScheme(.dark)
+//            .environmentObject(Adventures())
+//    }
+//}

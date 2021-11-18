@@ -13,11 +13,11 @@ enum AssetName: String, CaseIterable {
 }
 
 enum ImageAssetName: String, CaseIterable {
-    case classical, nature, cinematic
+    case piano, forest, cinema
 }
 
 enum PlaylistAssetName: String, CaseIterable {
-    case piano, forest, cinema
+    case classical = "classical", nature = "nature", cinematic = "cinematic"
 }
 
 enum Tags: String, CaseIterable  {
@@ -43,9 +43,11 @@ struct Adventure: Identifiable {
     let id = UUID()
     var name: String
     let description: String
-    let playlist: String
+    let playlistURL: URL
     let image: String
     let moods: [String]
+    
+    static let sample = Adventure(name: Adventure.Name.nature.rawValue, description: Adventure.Description.nature.rawValue, playlistURL: Bundle.main.url(forResource: PlaylistAssetName.nature.rawValue, withExtension: "m4a")!, image: AssetName.nature.rawValue, moods: Adventure.MoodTags.nature)
 }
 
 class Adventures: ObservableObject {
@@ -54,18 +56,17 @@ class Adventures: ObservableObject {
     // construct list on initialilization
     init() {
         
-        AssetName.allCases.forEach { filename in
+        Adventure.Name.allCases.forEach { name in
             
-//            let playlistURL = getAssetURL(forAsset: filename, assetType: .playlist)
-//            let imageURL = getAssetURL(forAsset: filename, assetType: .image)
+            let playlistURL = getAssetURL(adventure: name)
             
-            switch filename {
+            switch name {
             case .classical:
                 let adventure = Adventure(
                     name: Adventure.Name.classical.rawValue,
                     description: Adventure.Description.classical.rawValue,
-                    playlist: PlaylistAssetName.piano.rawValue,
-                    image: ImageAssetName.classical.rawValue,
+                    playlistURL: playlistURL!,
+                    image: ImageAssetName.piano.rawValue,
                     moods: Adventure.MoodTags.classical)
                 list.append(adventure)
                 
@@ -73,8 +74,8 @@ class Adventures: ObservableObject {
                 let adventure = Adventure(
                     name: Adventure.Name.nature.rawValue,
                     description: Adventure.Description.nature.rawValue,
-                    playlist: PlaylistAssetName.forest.rawValue,
-                    image: ImageAssetName.nature.rawValue,
+                    playlistURL: playlistURL!,
+                    image: ImageAssetName.forest.rawValue,
                     moods: Adventure.MoodTags.nature)
                 list.append(adventure)
                 
@@ -82,34 +83,32 @@ class Adventures: ObservableObject {
                 let adventure = Adventure(
                     name: Adventure.Name.cinematic.rawValue,
                     description: Adventure.Description.cinematic.rawValue,
-                    playlist: PlaylistAssetName.cinema.rawValue,
-                    image: ImageAssetName.cinematic.rawValue,
+                    playlistURL: playlistURL!,
+                    image: ImageAssetName.cinema.rawValue,
                     moods: Adventure.MoodTags.cinematic)
                 list.append(adventure)
             }
         }
     }
     
-//    private func getAssetURL(forAsset: AssetFilename, assetType: AssetType) -> URL {
+    private func getAssetURL(adventure: Adventure.Name) -> URL? {
         
-//        let assetUrl: URL?
-//
-//        switch adventure {
-//
-//        case .classical:
-//            assetUrl = Bundle.main.url(forResource: adventure.rawValue, withExtension: assetType.rawValue)
-//
-//        case .nature:
-//            <#code#>
-//        case .cinematic:
-//            <#code#>
-//        }
+        var assetURL: URL?
 
-//        guard let assetURL = Bundle.main.url(forResource: forAsset.rawValue, withExtension: assetType.rawValue) else {
-//            fatalError("Asset url not found!!")
+        switch adventure {
+        case .classical:
+            assetURL = Bundle.main.url(forResource: "classical", withExtension: "m4a", subdirectory: "Playlist.bundle")
+        case .nature:
+            assetURL = Bundle.main.url(forResource: "nature", withExtension: "m4a", subdirectory: "Playlist.bundle")
+        case .cinematic:
+            assetURL = Bundle.main.url(forResource: "cinematic", withExtension: "m4a", subdirectory: "Playlist.bundle")
+        }
+
+        guard let assetURL = assetURL else {
+            fatalError("Asset url not found!!")
 //                 force app crash as asset url is required
-//        }
+        }
         
-//        return assetURL
-//    }
+        return assetURL
+    }
 }
