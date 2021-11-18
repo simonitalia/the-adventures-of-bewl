@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct AdventuresView: View {
+    
+    init() {
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = AppTheme.secondaryBackgroundColor
+        appearance.titleTextAttributes = [.foregroundColor: AppTheme.primaryForegroundColor]
+            appearance.largeTitleTextAttributes = [.foregroundColor: AppTheme.primaryForegroundColor]
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 
     @EnvironmentObject var adventures: Adventures
     let columns = [GridItem(.flexible())]
@@ -27,7 +39,6 @@ struct AdventuresView: View {
                     }
                 }
             }
-            
             .navigationTitle("Adventures")
         }
     }
