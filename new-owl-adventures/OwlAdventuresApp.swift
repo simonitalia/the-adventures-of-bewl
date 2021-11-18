@@ -16,7 +16,7 @@ struct OwlAdventuresApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(adventures)
+                .accentColor(Color(AppTheme.accentColor))
         }
-        
     }
 }
