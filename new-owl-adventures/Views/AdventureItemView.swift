@@ -22,7 +22,6 @@ struct AdventureItemView: View {
             
             .frame(width: 384, height: 257)
             .cornerRadius(20)
-            .padding(.horizontal, 15)
             
             // preview button
             Button {
@@ -34,19 +33,29 @@ struct AdventureItemView: View {
             }
                 .frame(width: 30, height: 30, alignment: .center)
                 .offset(x: 160, y: -100)
+            
+                 //FIXME: Remove
+                .border(Color.blue)
                 
             // adventure title, subtitle
-            VStack(alignment: .leading, spacing: 2) {
-                Text("\(adventure.name)")
-                    .font(.system(size: 22, weight: .bold, design: .serif))
-   
-                Text("\(adventure.genre)")
-                    .font(.system(size: 20, weight: .regular, design: .serif))
-                    .font(.title2)
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    
+                    Text("\(adventure.name)")
+                        .font(.system(size: 22, weight: .bold, design: .serif))
+       
+                    Text("\(adventure.genre)")
+                        .font(.system(size: 20, weight: .regular, design: .serif))
+                        .font(.title2)
+                }
+                    //FIXME: Remove
+                    .border(Color.blue)
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                
+                Spacer()
             }
-            
-                .background(Color.red)
-                .foregroundColor(.white)
+                .padding(30)
         }
     }
 }
