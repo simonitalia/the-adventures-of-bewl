@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
 
     init() {
-        UITabBar.appearance().backgroundColor = AppTheme.primaryBackgroundColor
+        UITabBar.appearance().backgroundColor = AppTheme.secondaryBackgroundColor
     }
     
     var body: some View {
