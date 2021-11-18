@@ -9,22 +9,38 @@ import SwiftUI
 
 struct AdventureItemView: View {
     
-    var name: String
+    @Binding var isShowingAdventureView: Bool
+    let currentAdventure: Adventure
+    let name: String
+    let description: String
+    let backgroundImage: String
     
     var body: some View {
-        ZStack {
-            Color.red
-            .frame(width: .infinity, height: 257)
-            .cornerRadius(20)
-            .padding(.horizontal, 15)
-            Text("\(name)")
-                .padding()
+        ZStack(alignment: .leading) {
+            Image(backgroundImage)
+                .resizable(resizingMode: .stretch)
+                .frame(width: .infinity, height: 257)
+                .cornerRadius(20)
+                .overlay() {
+                    Color.black.opacity(0.3)
+                        .frame(width: .infinity, height: 257)
+                        .cornerRadius(20)
+                }
+            VStack(alignment: .leading) {
+                Text("\(name)")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.bottom, -2)
+                Text("\(description)")
+            }
+            .foregroundColor(.white)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 24)
+            .frame(width: .infinity, height: 257, alignment: .bottom)
         }
-    }
-}
-
-struct AdventureItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        AdventureItemView(name: "123")
+        .padding(.horizontal, 16)
+        .onTapGesture {
+            self.isShowingAdventureView = true
+        }
     }
 }

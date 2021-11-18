@@ -14,7 +14,7 @@ struct OwlAdventuresApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AdventuresView()
+            MainView()
                 .environmentObject(adventures)
         }
     }

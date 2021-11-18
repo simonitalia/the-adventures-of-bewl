@@ -8,27 +8,82 @@
 import SwiftUI
 
 struct AdventuresView: View {
-
+    
     @EnvironmentObject var adventures: Adventures
+    @State var isShowingAdventureView = false
+    @State var isShowingSuccessView = false
+    @State var searchText = ""
+    @State var selectedMood = Tags.all
+    @State var searching = false
+    
     let columns = [GridItem(.flexible())]
     
     var body: some View {
         
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(adventures.list) { adventure in
-                        AdventureItemView(name: adventure.name)
+            VStack(spacing: 0) {
+                SearchBar(searchText: $searchText, searching: $searching)
+                    .overlay(alignment: .trailing) {
+                        if searching {
+                            Button(action: {
+                                searchText = ""
+                                withAnimation {
+                                    searching = false
+                                    UIApplication.shared.dismissKeyboard()
+                                }
+                            }, label: {
+                                Image(systemName: "xmark")
+                                    .padding(.top, 10)
+                                    .padding(.trailing, 32)
+                                    .frame(width: 40, height: 40)
+                            })
+                        }
+                    }
+                
+                Filter(selectedMood: $selectedMood)
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        ForEach(adventures.list) { adventure in
+                            if adventure.moods.contains(selectedMood.rawValue)
+                                && (adventure.name.localizedCaseInsensitiveContains(searchText)
+                                || adventure.description.localizedCaseInsensitiveContains(searchText)
+                                || adventure.moods.map({ $0.localizedCaseInsensitiveContains(searchText)}).contains(true)
+                                || searchText == "") {
+                                NavigationLink(destination: AdventureView(isShowingSuccessView: $isShowingSuccessView, currentAdventure: adventure), isActive: $isShowingAdventureView) {
+                                AdventureItemView(
+                                    isShowingAdventureView: $isShowingAdventureView,
+                                    currentAdventure: adventure,
+                                    name: adventure.name,
+                                    description: adventure.description,
+                                    backgroundImage: adventure.image
+                                )
+                                }
+                            }
+                        }
                     }
                 }
+                .navigationTitle("Adventures")
+                .gesture(DragGesture()
+                            .onChanged({ _ in
+                    UIApplication.shared.dismissKeyboard()
+                })
+                )
             }
         }
+    }
+}
+
+extension UIApplication {
+    func dismissKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
 struct AdventuresView_Previews: PreviewProvider {
     static var previews: some View {
         AdventuresView()
+            .preferredColorScheme(.dark)
             .environmentObject(Adventures())
     }
 }
