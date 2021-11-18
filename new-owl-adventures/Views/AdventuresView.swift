@@ -22,9 +22,11 @@ struct AdventuresView: View {
     }
 
     @EnvironmentObject var adventures: Adventures
-    let columns = [GridItem(.flexible())]
+    @State private var searchText = ""
     
     var body: some View {
+        
+        let columns = [GridItem(.flexible())]
         
         NavigationView {
             
@@ -40,6 +42,7 @@ struct AdventuresView: View {
                 }
             }
             .navigationTitle("Adventures")
+            .searchable(text: $searchText)
         }
     }
 }
