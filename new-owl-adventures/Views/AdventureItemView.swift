@@ -33,7 +33,7 @@ struct AdventureItemView: View {
                     .accentColor(Color(AppTheme.primaryForegroundColor))
             }
                 .frame(width: 30, height: 30, alignment: .center)
-                .offset(x: 165, y: -105)
+                .offset(x: 160, y: -100)
                 
             // adventure title, subtitle
             VStack(alignment: .leading, spacing: 2) {
