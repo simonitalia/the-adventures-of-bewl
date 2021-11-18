@@ -26,6 +26,10 @@ struct Adventure: Identifiable {
         case classical = "Classical music", nature = "Nature sounds", cinematic = "Cinematic music"
     }
     
+    enum Mood: String {
+        case happy, energetic, stress
+    }
+    
     enum MoodTags  {
         static let classical = ["happy", "energetic"]
         static let nature = ["stress", "sad"]
