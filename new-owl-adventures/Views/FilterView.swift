@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Filter: View {
+struct FilterView: View {
     
     @Binding var selectedMood: Adventure.Tags
     
