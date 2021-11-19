@@ -9,59 +9,57 @@ import SwiftUI
 
 struct AdventuresView: View {
     
-    @EnvironmentObject var adventures: Adventures
-    @State var searchText = ""
-    @State var selectedMood = Tags.all
-    @State var searching = false
+    private let adventures = Adventures().list
     
-    let columns = [GridItem(.flexible())]
+    @State private var searchText = ""
+    @State private var selectedMood = Adventure.Tags.all
+    @State private var isSearching = false
     
     var body: some View {
         
+        let columns = [GridItem(.flexible())]
+        
         NavigationView {
-            VStack(spacing: 0) {
-                SearchBar(searchText: $searchText, searching: $searching)
-                    .overlay(alignment: .trailing) {
-                        if searching {
-                            Button(action: {
-                                searchText = ""
-                                withAnimation {
-                                    searching = false
-                                    UIApplication.shared.dismissKeyboard()
-                                }
-                            }, label: {
-                                Image(systemName: "xmark")
-                                    .padding(.top, 10)
-                                    .padding(.trailing, 32)
-                                    .frame(width: 40, height: 40)
-                            })
-                        }
-                    }
-                
-                Filter(selectedMood: $selectedMood)
+            VStack(alignment: .center, spacing: 5) {
+                FilterView(selectedMood: $selectedMood)
                 
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 16) {
-                        ForEach(adventures.list) { adventure in
-                            if adventure.moods.contains(selectedMood.rawValue)
-                                && (adventure.name.localizedCaseInsensitiveContains(searchText)
-                                || adventure.description.localizedCaseInsensitiveContains(searchText)
-                                    || adventure.moods.map({ $0.localizedCaseInsensitiveContains(searchText)}).contains(true)
-                                || searchText == "") {
-                                NavigationLink(destination: Text("AdventureView")) {
+                    LazyVGrid(columns: columns, alignment: .center, spacing: 15) {
+                        ForEach(adventures) { adventure in
+                            
+//                            if adventure.moods.contains(selectedMood.rawValue)
+//                                && (adventure.name.localizedCaseInsensitiveContains(searchText)
+//                                || adventure.genre.localizedCaseInsensitiveContains(searchText)
+//                                    || adventure.moods.map({ $0.localizedCaseInsensitiveContains(searchText)}).contains(true)
+//                                || searchText == "") {
+//                                NavigationLink(destination: Text("AdventureView")) {
                                 AdventureItemView(adventure: adventure)
-                                }
-                            }
+//                                }
+//                            }
                         }
                     }
+                    .padding(.horizontal)
                 }
+                .searchable(text: $searchText)
                 .navigationTitle("Adventures")
-                .gesture(DragGesture()
-                            .onChanged({ _ in
-                    UIApplication.shared.dismissKeyboard()
-                })
-                )
+                .gesture(
+                    DragGesture()
+                        .onChanged({ _ in
+                            UIApplication.shared.dismissKeyboard()
+                        })
+                    )
             }
+            .background(Color(AppTheme.primaryBackgroundColor))
+        }
+        .onAppear {
+            // configure navigation view appearance
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = AppTheme.primaryBackgroundColor
+            appearance.titleTextAttributes = [.foregroundColor: AppTheme.primaryForegroundColor]
+                appearance.largeTitleTextAttributes = [.foregroundColor: AppTheme.primaryForegroundColor]
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().compactAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }
@@ -72,10 +70,9 @@ extension UIApplication {
     }
 }
 
-//struct AdventuresView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AdventuresView()
-//            .preferredColorScheme(.dark)
-//            .environmentObject(Adventures())
-//    }
-//}
+struct AdventuresView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdventuresView()
+            .preferredColorScheme(.dark)
+    }
+}
