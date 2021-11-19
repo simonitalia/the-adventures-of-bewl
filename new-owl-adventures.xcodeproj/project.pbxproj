@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2A420F942745677C004BA71A /* AdventureItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A420F932745677C004BA71A /* AdventureItemView.swift */; };
 		2A6F44A827472FCE0083F738 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44A727472FCE0083F738 /* AppTheme.swift */; };
+		2A6F44AA2747B45B0083F738 /* AdventureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44A92747B45B0083F738 /* AdventureView.swift */; };
 		2A916B5E2746E76D0004D2B6 /* Cinematic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5B2746E7680004D2B6 /* Cinematic.m4a */; };
 		2A916B5F2746E76D0004D2B6 /* Classical.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5C2746E76B0004D2B6 /* Classical.m4a */; };
 		2A916B602746E76D0004D2B6 /* Nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5D2746E76D0004D2B6 /* Nature.m4a */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		2A420F932745677C004BA71A /* AdventureItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureItemView.swift; sourceTree = "<group>"; };
 		2A6F44A727472FCE0083F738 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		2A6F44A92747B45B0083F738 /* AdventureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureView.swift; sourceTree = "<group>"; };
 		2A916B5B2746E7680004D2B6 /* Cinematic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cinematic.m4a; sourceTree = "<group>"; };
 		2A916B5C2746E76B0004D2B6 /* Classical.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Classical.m4a; sourceTree = "<group>"; };
 		2A916B5D2746E76D0004D2B6 /* Nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nature.m4a; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D8FC42D92745C3E600E1BB85 /* MainView.swift */,
 				2ADB008B2745598E00099364 /* AdventuresView.swift */,
 				2A420F932745677C004BA71A /* AdventureItemView.swift */,
+				2A6F44A92747B45B0083F738 /* AdventureView.swift */,
 				2A916B612746EC3F0004D2B6 /* ExercisesView.swift */,
 				2A916B632746EC6A0004D2B6 /* AwardsView.swift */,
 				D85C27D52745B192002B3902 /* SearchBarView.swift */,
@@ -223,6 +226,7 @@
 				2ADB009A27455A9600099364 /* Exercise.swift in Sources */,
 				2ADB00AF274562BE00099364 /* MusicPlayer.swift in Sources */,
 				2A420F942745677C004BA71A /* AdventureItemView.swift in Sources */,
+				2A6F44AA2747B45B0083F738 /* AdventureView.swift in Sources */,
 				2ADB009827455A3200099364 /* Adventure.swift in Sources */,
 				2A916B622746EC400004D2B6 /* ExercisesView.swift in Sources */,
 				2A916B642746EC6A0004D2B6 /* AwardsView.swift in Sources */,
