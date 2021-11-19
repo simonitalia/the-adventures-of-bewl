@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2A420F942745677C004BA71A /* AdventureItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A420F932745677C004BA71A /* AdventureItemView.swift */; };
+		2A6F44A827472FCE0083F738 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44A727472FCE0083F738 /* AppTheme.swift */; };
+		2A916B5E2746E76D0004D2B6 /* Cinematic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5B2746E7680004D2B6 /* Cinematic.m4a */; };
+		2A916B5F2746E76D0004D2B6 /* Classical.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5C2746E76B0004D2B6 /* Classical.m4a */; };
+		2A916B602746E76D0004D2B6 /* Nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5D2746E76D0004D2B6 /* Nature.m4a */; };
+		2A916B622746EC400004D2B6 /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A916B612746EC3F0004D2B6 /* ExercisesView.swift */; };
+		2A916B642746EC6A0004D2B6 /* AwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A916B632746EC6A0004D2B6 /* AwardsView.swift */; };
 		2ADB008A2745598E00099364 /* OwlAdventuresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB00892745598E00099364 /* OwlAdventuresApp.swift */; };
 		2ADB008C2745598E00099364 /* AdventuresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB008B2745598E00099364 /* AdventuresView.swift */; };
 		2ADB008E2745599000099364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ADB008D2745599000099364 /* Assets.xcassets */; };
@@ -16,13 +22,19 @@
 		2ADB009A27455A9600099364 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB009927455A9600099364 /* Exercise.swift */; };
 		2ADB009C27455ACB00099364 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB009B27455ACB00099364 /* Award.swift */; };
 		2ADB00AF274562BE00099364 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB00AE274562BE00099364 /* MusicPlayer.swift */; };
-		D85C27D62745B192002B3902 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C27D52745B192002B3902 /* SearchBar.swift */; };
+		D85C27D62745B192002B3902 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C27D52745B192002B3902 /* SearchBarView.swift */; };
 		D8FC42DA2745C3E600E1BB85 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC42D92745C3E600E1BB85 /* MainView.swift */; };
-		D8FC42E0274695DE00E1BB85 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC42DF274695DE00E1BB85 /* Filter.swift */; };
+		D8FC42E0274695DE00E1BB85 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC42DF274695DE00E1BB85 /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A420F932745677C004BA71A /* AdventureItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureItemView.swift; sourceTree = "<group>"; };
+		2A6F44A727472FCE0083F738 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		2A916B5B2746E7680004D2B6 /* Cinematic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cinematic.m4a; sourceTree = "<group>"; };
+		2A916B5C2746E76B0004D2B6 /* Classical.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Classical.m4a; sourceTree = "<group>"; };
+		2A916B5D2746E76D0004D2B6 /* Nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nature.m4a; sourceTree = "<group>"; };
+		2A916B612746EC3F0004D2B6 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
+		2A916B632746EC6A0004D2B6 /* AwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsView.swift; sourceTree = "<group>"; };
 		2ADB00862745598E00099364 /* new-owl-adventures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "new-owl-adventures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADB00892745598E00099364 /* OwlAdventuresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwlAdventuresApp.swift; sourceTree = "<group>"; };
 		2ADB008B2745598E00099364 /* AdventuresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventuresView.swift; sourceTree = "<group>"; };
@@ -33,12 +45,9 @@
 		2ADB009B27455ACB00099364 /* Award.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Award.swift; sourceTree = "<group>"; };
 		2ADB00AE274562BE00099364 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		2ADB00B02745640800099364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D85C27D52745B192002B3902 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		D89E9A182746A553005DF22C /* cinematic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = cinematic.m4a; sourceTree = "<group>"; };
-		D89E9A192746A555005DF22C /* classical.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = classical.m4a; sourceTree = "<group>"; };
-		D89E9A1A2746A557005DF22C /* nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.m4a; sourceTree = "<group>"; };
+		D85C27D52745B192002B3902 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		D8FC42D92745C3E600E1BB85 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		D8FC42DF274695DE00E1BB85 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		D8FC42DF274695DE00E1BB85 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A916B542746E0E00004D2B6 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				2A916B5B2746E7680004D2B6 /* Cinematic.m4a */,
+				2A916B5C2746E76B0004D2B6 /* Classical.m4a */,
+				2A916B5D2746E76D0004D2B6 /* Nature.m4a */,
+			);
+			path = Playlists;
+			sourceTree = "<group>";
+		};
 		2ADB007D2745598E00099364 = {
 			isa = PBXGroup;
 			children = (
@@ -73,10 +92,10 @@
 			children = (
 				2ADB00B02745640800099364 /* Info.plist */,
 				2ADB00892745598E00099364 /* OwlAdventuresApp.swift */,
-				D8212F972746AC3200DEDFB1 /* Playlist.bundle */,
 				2ADB009D27455AF500099364 /* Model */,
 				2ADB009E27455AFD00099364 /* Views */,
 				2ADB008D2745599000099364 /* Assets.xcassets */,
+				D8212F972746AC3200DEDFB1 /* Audio Assets */,
 				2ADB008F2745599000099364 /* Preview Content */,
 			);
 			path = "new-owl-adventures";
@@ -93,6 +112,7 @@
 		2ADB009D27455AF500099364 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2A6F44A727472FCE0083F738 /* AppTheme.swift */,
 				2ADB009727455A3200099364 /* Adventure.swift */,
 				2ADB009927455A9600099364 /* Exercise.swift */,
 				2ADB009B27455ACB00099364 /* Award.swift */,
@@ -107,20 +127,20 @@
 				D8FC42D92745C3E600E1BB85 /* MainView.swift */,
 				2ADB008B2745598E00099364 /* AdventuresView.swift */,
 				2A420F932745677C004BA71A /* AdventureItemView.swift */,
-				D85C27D52745B192002B3902 /* SearchBar.swift */,
-				D8FC42DF274695DE00E1BB85 /* Filter.swift */,
+				2A916B612746EC3F0004D2B6 /* ExercisesView.swift */,
+				2A916B632746EC6A0004D2B6 /* AwardsView.swift */,
+				D85C27D52745B192002B3902 /* SearchBarView.swift */,
+				D8FC42DF274695DE00E1BB85 /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D8212F972746AC3200DEDFB1 /* Playlist.bundle */ = {
+		D8212F972746AC3200DEDFB1 /* Audio Assets */ = {
 			isa = PBXGroup;
 			children = (
-				D89E9A182746A553005DF22C /* cinematic.m4a */,
-				D89E9A1A2746A557005DF22C /* nature.m4a */,
-				D89E9A192746A555005DF22C /* classical.m4a */,
+				2A916B542746E0E00004D2B6 /* Playlists */,
 			);
-			path = Playlist.bundle;
+			path = "Audio Assets";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,8 +201,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A916B5F2746E76D0004D2B6 /* Classical.m4a in Resources */,
 				2ADB00912745599000099364 /* Preview Assets.xcassets in Resources */,
+				2A916B5E2746E76D0004D2B6 /* Cinematic.m4a in Resources */,
 				2ADB008E2745599000099364 /* Assets.xcassets in Resources */,
+				2A916B602746E76D0004D2B6 /* Nature.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,12 +218,15 @@
 			files = (
 				2ADB008C2745598E00099364 /* AdventuresView.swift in Sources */,
 				D8FC42DA2745C3E600E1BB85 /* MainView.swift in Sources */,
-				D8FC42E0274695DE00E1BB85 /* Filter.swift in Sources */,
+				D8FC42E0274695DE00E1BB85 /* FilterView.swift in Sources */,
+				2A6F44A827472FCE0083F738 /* AppTheme.swift in Sources */,
 				2ADB009A27455A9600099364 /* Exercise.swift in Sources */,
 				2ADB00AF274562BE00099364 /* MusicPlayer.swift in Sources */,
 				2A420F942745677C004BA71A /* AdventureItemView.swift in Sources */,
 				2ADB009827455A3200099364 /* Adventure.swift in Sources */,
-				D85C27D62745B192002B3902 /* SearchBar.swift in Sources */,
+				2A916B622746EC400004D2B6 /* ExercisesView.swift in Sources */,
+				2A916B642746EC6A0004D2B6 /* AwardsView.swift in Sources */,
+				D85C27D62745B192002B3902 /* SearchBarView.swift in Sources */,
 				2ADB009C27455ACB00099364 /* Award.swift in Sources */,
 				2ADB008A2745598E00099364 /* OwlAdventuresApp.swift in Sources */,
 			);
