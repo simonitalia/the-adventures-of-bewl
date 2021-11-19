@@ -20,6 +20,9 @@ struct FilterView: View {
                 }
             })
                 .pickerStyle(.segmented)
+                .background(Color.gray)
+                .cornerRadius(10)
+                
         }
         .padding(16)
     }
