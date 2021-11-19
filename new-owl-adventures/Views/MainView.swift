@@ -8,24 +8,35 @@
 import SwiftUI
 
 struct MainView: View {
-        
+    
     var body: some View {
+        
         TabView {
             AdventuresView()
                 .tabItem {
                     Image(systemName: "music.note.tv")
                     Text("Adventures")
                 }
-            AdventuresView()
+                .tag(0)
+                
+                
+            ExercisesView()
                 .tabItem {
-                    Image(systemName: "bolt.circle")
+                    Image(systemName: "brain")
                     Text("Exercises")
                 }
-            AdventuresView()
+                .tag(1)
+            
+            AwardsView()
                 .tabItem {
-                    Image(systemName: "flag")
+                    Image(systemName: "rosette")
                     Text("Awards")
                 }
+                .tag(2)
+        }
+        .onAppear {
+            UITabBar.appearance().backgroundColor = AppTheme.primaryBackgroundColor
+            UITabBar.appearance().unselectedItemTintColor = AppTheme.primaryForegroundColor
         }
     }
 }
@@ -34,6 +45,5 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .preferredColorScheme(.dark)
-            .environmentObject(Adventures())
     }
 }
