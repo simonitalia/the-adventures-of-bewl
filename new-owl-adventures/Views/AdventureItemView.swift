@@ -12,39 +12,54 @@ struct AdventureItemView: View {
     let adventure: Adventure
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            Image(adventure.image)
-                .resizable(resizingMode: .stretch)
-                .frame(width: .infinity, height: 257)
-                .cornerRadius(20)
+        ZStack(alignment: .center) {
+            
+            // background image, overlay
+            Image(adventure.image.rawValue)
+                .resizable()
+                .scaledToFill()
                 .overlay() {
                     Color.black.opacity(0.3)
-                        .frame(width: .infinity, height: 257)
-                        .cornerRadius(20)
                 }
-            VStack(alignment: .leading) {
-                Text("\(adventure.name)")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.bottom, -2)
-                Text("\(adventure.description)")
+            
+            // view container
+            VStack {
+                
+                //preview button container
+                HStack(alignment: .center) {
+                    Spacer()
+                    Button {
+                    } label: {
+                        Image(systemName: "waveform.circle")
+                            .resizable()
+                            .renderingMode(.original)
+                    }
+                    .frame(width: 30, height: 30)
+                }
+                
+                // text container
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Spacer()
+                        Text("\(adventure.name.rawValue)")
+                            .font(.system(size: 22, weight: .bold, design: .serif))
+                        Text("\(adventure.genre.rawValue)")
+                            .font(.system(size: 20, weight: .regular, design: .serif))
+                    }
+                    Spacer()
+                }
             }
-            .foregroundColor(.white)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 24)
-            .frame(width: .infinity, height: 257, alignment: .bottom)
+            .foregroundColor(Color(AppTheme.primaryForegroundColor))
+            .padding()
         }
-        .padding(.horizontal, 16)
-//        .onTapGesture {
-//            isShowingAdventureView = true
-//        }
+        .cornerRadius(20)
+        .frame(maxHeight: 257)
     }
 }
 
-//struct AdventureItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AdventureItemView(adventure: Adventure.sample)
-//            .preferredColorScheme(.dark)
-//            .environmentObject(Adventures())
-//    }
-//}
+struct AdventureItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdventureItemView(adventure: Adventure.sample)
+            .preferredColorScheme(.dark)
+    }
+}
