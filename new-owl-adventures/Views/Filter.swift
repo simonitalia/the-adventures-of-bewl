@@ -9,12 +9,12 @@ import SwiftUI
 
 struct Filter: View {
     
-    @Binding var selectedMood: Tags
+    @Binding var selectedMood: Adventure.Tags
     
     var body: some View {
         ScrollView(.horizontal) {
             Picker("Choose your mood", selection: $selectedMood, content: {
-                ForEach(Tags.allCases, id: \.self) { mood in
+                ForEach(Adventure.Tags.allCases, id: \.self) { mood in
                     Text("\(mood.rawValue.capitalized)")
                         .tag(mood)
                 }
