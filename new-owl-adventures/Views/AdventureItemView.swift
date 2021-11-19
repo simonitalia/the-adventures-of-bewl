@@ -14,13 +14,15 @@ struct AdventureItemView: View {
     var body: some View {
         ZStack(alignment: .center) {
             
-            // background image, overlay
-            Image(adventure.image.rawValue)
-                .resizable()
-                .scaledToFill()
-                .overlay() {
-                    Color.black.opacity(0.3)
-                }
+            NavigationLink(destination: AdventureView(adventure: adventure)) {
+                // background image, overlay
+                Image(adventure.image.rawValue)
+                    .resizable()
+                    .scaledToFill()
+                    .overlay() {
+                        Color.black.opacity(0.3)
+                    }
+            }
             
             // view container
             VStack {
