@@ -20,7 +20,7 @@ struct AdventureItemView: View {
                     .resizable()
                     .scaledToFill()
                     .overlay() {
-                        Color.black.opacity(0.3)
+                        Color.black.opacity(0.1)
                     }
             }
             
