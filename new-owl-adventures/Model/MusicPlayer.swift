@@ -29,8 +29,8 @@ var audioPlayer: AVAudioPlayer?
 //    }
 //}
 
-class MusicPlayer {
-    static let shared = MusicPlayer()
+class MusicPlayer: ObservableObject {
+
     var audioPlayer: AVAudioPlayer?
     
     func startBackgroundMusic(backgroundMusicFileName: String) {
