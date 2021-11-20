@@ -9,29 +9,32 @@ import SwiftUI
 
 struct AdventureView: View {
     
+    @EnvironmentObject var musicPlayer: MusicPlayer
     let adventure: Adventure
     
     @State var timeRemaining = 0
     
-    
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
         
             // Genre, description text container
-            VStack(alignment: .leading, spacing: 12) {
-                Spacer()
+            VStack(alignment: .leading, spacing: 10) {
                 Text("\(adventure.playlist.genre.rawValue)")
-                    .font(.system(size: 20, weight: .bold, design: .serif))
+                    .font(.system(size: 22, weight: .bold, design: .serif))
+                    .padding(.horizontal)
+                    
                 Text("\(adventure.description.rawValue)")
-                    .font(.system(size: 18, weight: .regular, design: .serif))
+                    .font(.system(size: 20, weight: .regular, design: .serif))
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
-                
+                    .padding(.horizontal)
+                   
                 Divider()
                     Color(AppTheme.primaryForegroundColor)
                     .frame(maxHeight: 2)
+                    .padding(.horizontal)
                 
                 // timer container
                 HStack(alignment: .top) {
@@ -45,17 +48,24 @@ struct AdventureView: View {
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color(AppTheme.accentColor), lineWidth: 2)
                         )
-                        .font(.system(size: 16))
+                        .font(.system(size: 18))
                 }
+                .padding(.horizontal)
                 
-                Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
-                    .resizable()
-                    .scaledToFill()
-                    .cornerRadius(20)
-                Spacer()
+                VStack(alignment: .leading, spacing: 0) {
+                    Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
+                        .resizable()
+                        .scaledToFit()
+                        .overlay() {
+                            Color.black.opacity(0.1)
+                        }
+                    
+                    MusicPlayerControlsView(nowPlayingAdventureName: adventure.name, nowPlayingAdventureImage: adventure.cardImage)
+                    }
             }
-            .padding()
             .foregroundColor(Color(AppTheme.primaryForegroundColor))
+            
+            
         }
         .navigationTitle(adventure.name.rawValue)
     }
