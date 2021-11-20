@@ -10,6 +10,7 @@
 		2A420F942745677C004BA71A /* AdventureItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A420F932745677C004BA71A /* AdventureItemView.swift */; };
 		2A6F44A827472FCE0083F738 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44A727472FCE0083F738 /* AppTheme.swift */; };
 		2A6F44AA2747B45B0083F738 /* AdventureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44A92747B45B0083F738 /* AdventureView.swift */; };
+		2A6F44AC2747D3240083F738 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F44AB2747D3240083F738 /* Playlist.swift */; };
 		2A916B5E2746E76D0004D2B6 /* Cinematic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5B2746E7680004D2B6 /* Cinematic.m4a */; };
 		2A916B5F2746E76D0004D2B6 /* Classical.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5C2746E76B0004D2B6 /* Classical.m4a */; };
 		2A916B602746E76D0004D2B6 /* Nature.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 2A916B5D2746E76D0004D2B6 /* Nature.m4a */; };
@@ -32,6 +33,7 @@
 		2A420F932745677C004BA71A /* AdventureItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureItemView.swift; sourceTree = "<group>"; };
 		2A6F44A727472FCE0083F738 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		2A6F44A92747B45B0083F738 /* AdventureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureView.swift; sourceTree = "<group>"; };
+		2A6F44AB2747D3240083F738 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		2A916B5B2746E7680004D2B6 /* Cinematic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cinematic.m4a; sourceTree = "<group>"; };
 		2A916B5C2746E76B0004D2B6 /* Classical.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Classical.m4a; sourceTree = "<group>"; };
 		2A916B5D2746E76D0004D2B6 /* Nature.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nature.m4a; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				2A6F44A727472FCE0083F738 /* AppTheme.swift */,
+				2A6F44AB2747D3240083F738 /* Playlist.swift */,
 				2ADB009727455A3200099364 /* Adventure.swift */,
 				2ADB009927455A9600099364 /* Exercise.swift */,
 				2ADB009B27455ACB00099364 /* Award.swift */,
@@ -229,6 +232,7 @@
 				2A6F44AA2747B45B0083F738 /* AdventureView.swift in Sources */,
 				2ADB009827455A3200099364 /* Adventure.swift in Sources */,
 				2A916B622746EC400004D2B6 /* ExercisesView.swift in Sources */,
+				2A6F44AC2747D3240083F738 /* Playlist.swift in Sources */,
 				2A916B642746EC6A0004D2B6 /* AwardsView.swift in Sources */,
 				D85C27D62745B192002B3902 /* SearchBarView.swift in Sources */,
 				2ADB009C27455ACB00099364 /* Award.swift in Sources */,
@@ -367,6 +371,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Bewl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -398,6 +403,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Bewl;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
