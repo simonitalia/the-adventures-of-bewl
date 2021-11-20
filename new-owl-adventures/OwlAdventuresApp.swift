@@ -10,9 +10,12 @@ import SwiftUI
 @main
 struct OwlAdventuresApp: App {
     
+    @StateObject var musicPlayer = MusicPlayer()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(musicPlayer)
         }
     }
 }
