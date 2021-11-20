@@ -19,7 +19,6 @@ struct MainView: View {
                 }
                 .tag(0)
                 
-                
             ExercisesView()
                 .tabItem {
                     Image(systemName: "brain")
