@@ -3,7 +3,7 @@
     {
       "color" : {
         "platform" : "watchos",
-        "reference" : "systemOrangeColor"
+        "reference" : "systemYellowColor"
       },
       "idiom" : "universal"
     }
