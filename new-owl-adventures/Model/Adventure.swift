@@ -10,40 +10,54 @@ import SwiftUI
 
 struct Adventure: Identifiable {
     
-    enum ImageAssetName: String {
-        case piano = "piano", forest = "forest", cinema = "cinema"
-    }
-
-    enum PlaylistAssetName: String, CaseIterable {
-        case classical = "Classical", nature = "Nature", cinematic = "Cinematic"
-    }
-    
     enum Name: String, CaseIterable {
         case classical = "The piano-owl", nature = "The magician's potion", cinematic = "The audition"
     }
     
-    enum Genre: String, CaseIterable {
-        case classical = "Classical music", nature = "Nature sound", cinematic = "Cinematic music"
+    enum Description: String {
+        case classical = "Bewl wants to learn to play the piano, starting with Beethoven's 5th Symphony. Why don’t you help him?",
+             nature = "A wizard is making a love potion and needs Bewl's help to pick herbs, flowers and berries from the forest. Let's get them!",
+             cinematic = "National Geographic is casting actors to play the lead Owl in a documentary movie. Bewl can’t miss this opportunity, and neither can you!"
     }
     
-    enum Tags: String, CaseIterable  {
-        case all, happy, sad, stressed, tired, demotivated, energetic
+    enum ImageAsset {
+        
+        enum ImageType {
+            case card, detail
+        }
+        
+        enum CardImageName: String {
+            case piano, forest, cinema
+        }
+        
+        enum DetailImageName: String {
+            case pianoDetail, forestDetail, cinemaDetail
+        }
     }
     
-    enum MoodTags  {
-        static let classical = [Tags.all.rawValue, Tags.happy.rawValue, Tags.energetic.rawValue]
-        static let nature = [Tags.all.rawValue, Tags.stressed.rawValue, Tags.sad.rawValue]
-        static let cinematic = [Tags.all.rawValue, Tags.happy.rawValue, Tags.demotivated.rawValue, Tags.tired.rawValue]
-    }
-
     let id = UUID()
     var name: Adventure.Name
-    let genre: Adventure.Genre
-    let playlistURL: URL
-    let image: Adventure.ImageAssetName
-    let moods: [String]
+    let description: Description
+    let playlist: Playlist
+    let cardImage: String
+    let detailImage: String
     
-    static let sample = Adventure(name: Adventure.Name.nature, genre: Adventure.Genre.nature, playlistURL: Bundle.main.url(forResource: Adventure.PlaylistAssetName.nature.rawValue, withExtension: "m4a")!, image: Adventure.ImageAssetName.forest, moods: MoodTags.nature)
+    static let sample = Adventure(name: Adventure.Name.nature, description: Description.nature, playlist: Playlist(playlistGenre: .nature), cardImage: Adventure.getImageAsset(forAdventure: Adventure.Name.nature, imageAsset: .card), detailImage: Adventure.getImageAsset(forAdventure: Adventure.Name.nature, imageAsset: .detail))
+    
+    static func getImageAsset(forAdventure name: Adventure.Name, imageAsset type: ImageAsset.ImageType) -> String {
+        
+        switch name {
+            
+        case .classical:
+            return type == .card ? ImageAsset.CardImageName.piano.rawValue : ImageAsset.DetailImageName.pianoDetail.rawValue
+        
+        case .nature:
+            return type == .card ? ImageAsset.CardImageName.forest.rawValue : ImageAsset.DetailImageName.forestDetail.rawValue
+        
+        case .cinematic:
+            return type == .card ? ImageAsset.CardImageName.cinema.rawValue : ImageAsset.DetailImageName.cinemaDetail.rawValue
+        }
+    }
 }
 
 class Adventures {
@@ -54,57 +68,34 @@ class Adventures {
         
         Adventure.Name.allCases.forEach { name in
             
-            let playlistURL = getAssetURL(forAdventure: name)
-            
             switch name {
             case .classical:
                 let adventure = Adventure(
                     name: Adventure.Name.classical,
-                    genre: Adventure.Genre.classical,
-                    playlistURL: playlistURL,
-                    image: Adventure.ImageAssetName.piano,
-                    moods: Adventure.MoodTags.classical)
+                    description: .classical,
+                    playlist: Playlist(playlistGenre: .classical),
+                    cardImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .card),
+                    detailImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .detail))
                 list.append(adventure)
                 
             case .nature:
                 let adventure = Adventure(
                     name: Adventure.Name.nature,
-                    genre: Adventure.Genre.nature,
-                    playlistURL: playlistURL,
-                    image: Adventure.ImageAssetName.forest,
-                    moods: Adventure.MoodTags.nature)
+                    description: .nature,
+                    playlist: Playlist(playlistGenre: .nature),
+                    cardImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .card),
+                    detailImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .detail))
                 list.append(adventure)
                 
             case .cinematic:
                 let adventure = Adventure(
                     name: Adventure.Name.cinematic,
-                    genre: Adventure.Genre.cinematic,
-                    playlistURL: playlistURL,
-                    image: Adventure.ImageAssetName.cinema,
-                    moods: Adventure.MoodTags.cinematic)
+                    description: .cinematic,
+                    playlist: Playlist(playlistGenre: .cinematic),
+                    cardImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .card),
+                    detailImage: Adventure.getImageAsset(forAdventure: name, imageAsset: .detail))
                 list.append(adventure)
             }
         }
-    }
-    
-    private func getAssetURL(forAdventure name: Adventure.Name) -> URL {
-        
-        var assetURL: URL?
-
-        switch name {
-        case .classical:
-            assetURL = Bundle.main.url(forResource: Adventure.PlaylistAssetName.classical.rawValue, withExtension: "m4a")
-        case .nature:
-            assetURL = Bundle.main.url(forResource: Adventure.PlaylistAssetName.nature.rawValue, withExtension: "m4a")
-        case .cinematic:
-            assetURL = Bundle.main.url(forResource: Adventure.PlaylistAssetName.cinematic.rawValue, withExtension: "m4a")
-        }
-
-        guard let assetURL = assetURL else {
-            fatalError("Asset url not found!!")
-                // force app crash as asset url is required
-        }
-        
-        return assetURL
     }
 }
