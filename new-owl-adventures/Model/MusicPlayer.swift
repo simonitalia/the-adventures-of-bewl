@@ -8,56 +8,37 @@
 import Foundation
 import AVFoundation
 
-var audioPlayer: AVAudioPlayer?
-
-//struct ContentView: View {
-//    var body: some View {
-//        VStack {
-//            Button("Play", action: {
-//                MusicPlayer.shared.startBackgroundMusic(backgroundMusicFileName: "track")
-//            })
-//                .foregroundColor(.white)
-//                .frame(width: 320, height: 52)
-//                .background(Color.blue)
-//            Button("Pause", action: {
-//                MusicPlayer.shared.stopBackgroundMusic()
-//            })
-//                .foregroundColor(.white)
-//                .frame(width: 320, height: 52)
-//                .background(Color.blue)
-//        }
-//    }
-//}
-
 class MusicPlayer: ObservableObject {
-
-    var audioPlayer: AVAudioPlayer?
     
-    func startBackgroundMusic(backgroundMusicFileName: String) {
+    private let playlistUrl: URL
+    var audioPlayer: AVAudioPlayer
+    
+    init(playlistUrl: URL) {
+        self.playlistUrl = playlistUrl
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
         try? AVAudioSession.sharedInstance().setActive(true)
         
-        if let bundle = Bundle.main.path(forResource: backgroundMusicFileName, ofType: "m4a") {
-            let backgroundMusic = NSURL(fileURLWithPath: bundle)
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)
-                guard let audioPlayer = audioPlayer else {
-                    return
-                }
-                audioPlayer.numberOfLoops = -1
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-            } catch {
-                print(error)
-            }
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: playlistUrl)
+            self.audioPlayer.numberOfLoops = -1
+            
+        } catch {
+            fatalError(error.localizedDescription)
+                //force app crash
         }
     }
     
-    func stopBackgroundMusic() {
-        guard let audioPlayer = audioPlayer else {
-            return
-        }
+    func playMusic() {
+        audioPlayer.play()
+        
+    }
+    
+    func pauseMusic() {
+        audioPlayer.pause()
+    }
+    
+    func stopMusic() {
         audioPlayer.stop()
     }
 }
