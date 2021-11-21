@@ -137,9 +137,9 @@
 				2A6F44A92747B45B0083F738 /* AdventureView.swift */,
 				2A916B612746EC3F0004D2B6 /* ExercisesView.swift */,
 				2A916B632746EC6A0004D2B6 /* AwardsView.swift */,
+				2AF2D856274974EC0043F50F /* MusicPlayerControlsView.swift */,
 				D85C27D52745B192002B3902 /* SearchBarView.swift */,
 				D8FC42DF274695DE00E1BB85 /* FilterView.swift */,
-				2AF2D856274974EC0043F50F /* MusicPlayerControlsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -371,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"new-owl-adventures/Preview Content\"";
-				DEVELOPMENT_TEAM = 3GWJJ878N9;
+				DEVELOPMENT_TEAM = ZAAMW68LZ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
@@ -387,7 +387,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appledeveloperacademy.vitaly.new-owl-adventures";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.bewl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -403,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"new-owl-adventures/Preview Content\"";
-				DEVELOPMENT_TEAM = 3GWJJ878N9;
+				DEVELOPMENT_TEAM = ZAAMW68LZ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
@@ -419,7 +419,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.appledeveloperacademy.vitaly.new-owl-adventures";
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.bewl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
