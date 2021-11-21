@@ -62,6 +62,5 @@ struct AdventureItemView: View {
 struct AdventureItemView_Previews: PreviewProvider {
     static var previews: some View {
         AdventureItemView(adventure: Adventure.sample)
-            .preferredColorScheme(.dark)
     }
 }
