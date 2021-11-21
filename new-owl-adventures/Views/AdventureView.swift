@@ -13,6 +13,33 @@ struct AdventureView: View {
     
     @State var timeRemaining = 0
     
+//    @State var birthDate = Date()
+    
+    private let timerHours: [Int] = {
+        var values = [Int]()
+        
+        for value in (0...12) {
+            values.append(value)
+        }
+        
+        return values
+    }()
+    
+    private let timerMinutes: [Int] = {
+        var values = [Int]()
+        
+        for value in (0...59) {
+            values.append(value)
+        }
+        
+        return values
+    }()
+    
+    
+    @State private var selectedHours = 0
+    @State private var selectedMinutes = 0
+    
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)

@@ -13,7 +13,25 @@ struct AdventuresView: View {
     
     @State private var searchText = ""
     @State private var selectedMood = ""
-    @State private var isSearching = false
+    
+    // store search adventures matching name
+    private var searchAdventures: [Adventure] {
+        if searchText.isEmpty {
+            return adventures
+        
+        } else {
+            return adventures.filter { adventure in
+                adventure.name.rawValue.contains(searchText)
+            }
+        }
+    }
+    
+    // list of search suggestions
+    var searchSuggestions: [String] {
+        var names = [String]()
+        adventures.forEach { names.append($0.name.rawValue) }
+        return names
+    }
     
     var body: some View {
         
@@ -22,21 +40,17 @@ struct AdventuresView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 15) {
-                    ForEach(adventures) { adventure in
-                            AdventureItemView(adventure: adventure)
-                    }
+                    ForEach(searchAdventures) { AdventureItemView(adventure: $0) }
                 }
                 .padding(.horizontal)
             }
             .background(Color(AppTheme.primaryBackgroundColor))
-            .searchable(text: $searchText)
+            .searchable(text: $searchText) {
+                ForEach(searchSuggestions, id: \.self) { name in
+                    Text(name).searchCompletion(name)
+                }
+            }
             .navigationTitle("Adventures")
-    //            .gesture(
-    //                DragGesture()
-    //                    .onChanged({ _ in
-    //                        UIApplication.shared.dismissKeyboard()
-    //                    })
-    //                )
         }
         .onAppear {
             // configure navigation view appearance
