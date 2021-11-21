@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AdventureView: View {
     
-    @EnvironmentObject var musicPlayer: MusicPlayer
     let adventure: Adventure
     
     @State var timeRemaining = 0
@@ -60,8 +59,8 @@ struct AdventureView: View {
                             Color.black.opacity(0.1)
                         }
                     
-                    MusicPlayerControlsView(nowPlayingAdventureName: adventure.name, nowPlayingAdventureImage: adventure.cardImage)
-                    }
+                    MusicPlayerControlsView(adventure: adventure)
+                }
             }
             .foregroundColor(Color(AppTheme.primaryForegroundColor))
             
