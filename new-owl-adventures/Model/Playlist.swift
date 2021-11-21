@@ -9,7 +9,7 @@ import Foundation
 
 struct Playlist {
     
-    enum PlaylistAssetName: String {
+    enum AudioAsset: String {
         case classical = "Classical", nature = "Nature", cinematic = "Cinematic"
     }
     
@@ -23,7 +23,7 @@ struct Playlist {
     
     let genre: Genre
     let moodTags: [Mood]
-    var playlistURL: URL {
+    var url: URL {
         return getPlaylistURL(for: genre)
     }
     
@@ -48,13 +48,13 @@ struct Playlist {
 
         switch genre {
         case .classical:
-            assetURL = Bundle.main.url(forResource: PlaylistAssetName.classical.rawValue, withExtension: "m4a")
+            assetURL = Bundle.main.url(forResource: AudioAsset.classical.rawValue, withExtension: "m4a")
             
         case .nature:
-            assetURL = Bundle.main.url(forResource: PlaylistAssetName.nature.rawValue, withExtension: "m4a")
+            assetURL = Bundle.main.url(forResource: AudioAsset.nature.rawValue, withExtension: "m4a")
             
         case .cinematic:
-            assetURL = Bundle.main.url(forResource: PlaylistAssetName.cinematic.rawValue, withExtension: "m4a")
+            assetURL = Bundle.main.url(forResource: AudioAsset.cinematic.rawValue, withExtension: "m4a")
         }
 
         guard let assetURL = assetURL else {
