@@ -33,9 +33,9 @@ struct MainView: View {
                 }
                 .tag(2)
         }
+        
         .onAppear {
-            UITabBar.appearance().backgroundColor = AppTheme.primaryBackgroundColor
-            UITabBar.appearance().unselectedItemTintColor = AppTheme.primaryForegroundColor
+            UITabBar.appearance().unselectedItemTintColor = AppTheme.secondaryBackgroundColor
         }
     }
 }
@@ -43,6 +43,5 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .preferredColorScheme(.dark)
     }
 }
