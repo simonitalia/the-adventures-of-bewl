@@ -48,6 +48,7 @@ struct AdventuresView: View {
             UINavigationBar.appearance().compactAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
+        .opacity(0.9)
     }
 }
 
@@ -60,6 +61,5 @@ extension UIApplication {
 struct AdventuresView_Previews: PreviewProvider {
     static var previews: some View {
         AdventuresView()
-            .preferredColorScheme(.dark)
     }
 }
