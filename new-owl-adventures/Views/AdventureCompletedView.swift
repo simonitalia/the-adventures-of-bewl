@@ -27,28 +27,41 @@ struct AdventureCompletedView: View {
         }
     }
     
+    var completedAdventureImage: String {
+        switch adventure.name {
+        
+        case .classical:
+            return "pianoCompleted"
+            
+        case .nature:
+            return "forestCompleted"
+            
+        case .cinematic:
+            return "cinemaCompleted"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
                 Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
                 
-                Image(adventure.detailImage)
+                Image(completedAdventureImage)
                     .resizable()
                     .scaledToFill()
                     .overlay() {
                         Color.black.opacity(0.1)
                     }
                 
-                VStack(alignment: .center) {
-                    Text(completedAdventureText)
-                        .font(.system(size: 18, weight: .bold, design: .serif))
-                        .foregroundColor(Color(AppTheme.primaryForegroundColor))
-                        .overlay(RoundedRectangle(cornerRadius: 20)
-                                    .frame(width: 400, height: 100, alignment: .center)
-                                    .opacity(0.3)
-                        )
-                }
-                .padding(40)
+                RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 400, height: 100, alignment: .center)
+                            .opacity(0.7)
+                            .padding(40)
+                
+                Text(completedAdventureText)
+                    .font(.system(size: 18, weight: .bold, design: .serif))
+                    .foregroundColor(Color(AppTheme.primaryForegroundColor))
+                    .padding(65)
             }
             .navigationBarTitleDisplayMode(.inline) //small navigation bar
             .toolbar {
@@ -57,7 +70,6 @@ struct AdventureCompletedView: View {
                 }
             }
         }
-        .opacity(0.9)
     }
 }
 
