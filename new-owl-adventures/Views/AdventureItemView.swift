@@ -13,18 +13,12 @@ struct AdventureItemView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
-            
-            NavigationLink(destination: AdventureView(adventure: adventure)) {
-                // background image, overlay
-                Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .card))
-                    .resizable()
-                    .scaledToFill()
-                    .overlay() {
-                        Color.black.opacity(0.1)
-                    }
-            }
-            
-            // view container
+            Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .card))
+                .resizable()
+                .scaledToFill()
+                .overlay() {
+                    Color.black.opacity(0.1)
+                }
             VStack {
                 
                 //preview button container

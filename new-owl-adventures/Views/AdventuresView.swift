@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct AdventuresView: View {
-    
-    private let adventures = Adventures().list
-    
     @State private var searchText = ""
     @State private var selectedMood = ""
+
+    private let adventures = Adventures().list
     
     // store search adventures matching name
     private var searchAdventures: [Adventure] {
@@ -40,7 +39,11 @@ struct AdventuresView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 15) {
-                    ForEach(searchAdventures) { AdventureItemView(adventure: $0) }
+                    ForEach(searchAdventures) { adventure in
+                        NavigationLink(destination: AdventureView(adventure: adventure)) {
+                                AdventureItemView(adventure: adventure)
+                        }
+                    }
                 }
                 .padding(.horizontal)
             }
