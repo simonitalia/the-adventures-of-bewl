@@ -52,13 +52,14 @@ struct AdventureView: View {
                 }
                 .padding(.horizontal)
                 
-                VStack(alignment: .center, spacing: 0) {
+                VStack(alignment: .center, spacing: 10) {
                     Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
                         .resizable()
                         .scaledToFit()
                         .overlay() {
                             Color.black.opacity(0.1)
                         }
+                        .cornerRadius(20)
                     
                     MusicPlayerControlsView(
                         playlistCoverImage: adventure.cardImage,
