@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AdventureView: View {
+    @State private var isPresenting = false
     
     let adventure: Adventure
     var musicPlayer: MusicPlayer {
@@ -69,9 +70,19 @@ struct AdventureView: View {
             }
             .foregroundColor(Color(AppTheme.primaryForegroundColor))
             
-            
         }
         .navigationTitle(adventure.name.rawValue)
+        
+        // navigation view toolbar button and presentation action
+        .toolbar {
+            Button("End Adventure") {
+                isPresenting.toggle()
+            }
+            
+            .fullScreenCover(isPresented: $isPresenting) {
+                AdventureCompletedView(adventure: adventure)
+            }
+        }
     }
 }
 
