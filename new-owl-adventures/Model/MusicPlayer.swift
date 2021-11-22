@@ -7,11 +7,13 @@
 
 import Foundation
 import AVFoundation
+import SwiftUI
 
 class MusicPlayer: ObservableObject {
     
     private let playlistUrl: URL
     var audioPlayer: AVAudioPlayer
+    var isPlaying = false
     
     init(playlistUrl: URL) {
         self.playlistUrl = playlistUrl
@@ -31,14 +33,16 @@ class MusicPlayer: ObservableObject {
     
     func playMusic() {
         audioPlayer.play()
-        
+        isPlaying = true
     }
     
     func pauseMusic() {
         audioPlayer.pause()
+        isPlaying = false
     }
     
     func stopMusic() {
         audioPlayer.stop()
+        isPlaying = false
     }
 }

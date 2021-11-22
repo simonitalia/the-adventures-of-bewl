@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MusicPlayerControlsView: View {
     
-    let adventure: Adventure
-    @State var musicPlayer: MusicPlayer!
-    @State var isPlaying = false
-
+    let playlistCoverImage: String
+    let playlistName: String
+    let musicPlayer: MusicPlayer
+    
+    @State private var isPlaying = false
+    
     var body: some View {
         
         //Container
@@ -29,12 +31,12 @@ struct MusicPlayerControlsView: View {
             HStack {
                 Button(action: {}) {
                     HStack {
-                        Image(adventure.cardImage)
+                        Image(playlistCoverImage)
                             .resizable()
                             .frame(width: 45, height: 45)
                             .shadow(radius: 10, x: 0, y: 3)
                             .padding(.leading)
-                        Text(adventure.name.rawValue)
+                        Text(playlistName)
                             .padding(.leading, 10)
                         Spacer()
                     }
@@ -53,7 +55,8 @@ struct MusicPlayerControlsView: View {
                     
                 }) {
                     let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
-                    Image(systemName: imageName).font(.title3)
+                    Image(systemName: imageName)
+                        .frame(width: 50, height: 50, alignment: .center)
                    
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -61,14 +64,11 @@ struct MusicPlayerControlsView: View {
             }
         }
         .foregroundColor(Color(AppTheme.accentColor))
-        .onAppear {
-            musicPlayer = MusicPlayer(playlistUrl: adventure.playlist.url)
-        }
     }
 }
 
-struct MusicPlayerControlsView_Previews: PreviewProvider {
-    static var previews: some View {
-        MusicPlayerControlsView(adventure: Adventure.sample, musicPlayer: nil)
-    }
-}
+//struct MusicPlayerControlsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MusicPlayerControlsView(adventure: Adventure.sample)
+//    }
+//}
