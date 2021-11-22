@@ -45,15 +45,14 @@ struct AdventureView: View {
                     Text("0:00")
                         .foregroundColor(Color(AppTheme.accentColor))
                         .padding(5)
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 5)
+                        .overlay(RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color(AppTheme.accentColor), lineWidth: 2)
                         )
                         .font(.system(size: 18))
                 }
                 .padding(.horizontal)
                 
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .center, spacing: 0) {
                     Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
                         .resizable()
                         .scaledToFit()
