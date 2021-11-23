@@ -105,7 +105,7 @@ struct AdventureView: View {
                 
                 Text("\(adventure.description.rawValue)")
                     .modifier(BodyFont())
-                    .padding(.bottom, 8)
+                    .padding(.bottom, 20)
                     .padding(.horizontal, 20)
                 
                 Divider()
