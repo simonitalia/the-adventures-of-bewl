@@ -29,13 +29,12 @@ struct ExercisesView: View {
                                     Text("\(exercises[exercise].name.rawValue)")
                                         .font(.system(size: 24))
                                         .fontWeight(.semibold)
-                                        .padding(.top, 24)
                                     Text("\(exercises[exercise].description.rawValue)")
                                         .font(.system(size: 18))
                                         .fontWeight(.regular)
                                 }
-                                .multilineTextAlignment(.leading)
-                                .padding(.leading, 20)
+                                .padding(.top, 24)
+                                .padding(.horizontal, 20)
                                 if exercises[exercise].name == .breathe {
                                     VStack {
                                         HStack {
