@@ -7,6 +7,6 @@
 		<string>audio</string>
 	</array>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDarkContent</string>
 </dict>
 </plist>

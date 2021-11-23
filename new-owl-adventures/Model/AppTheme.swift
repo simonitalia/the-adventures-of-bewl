@@ -11,6 +11,6 @@ enum AppTheme {
     
     static let accentColor = UIColor.systemYellow
     static let primaryBackgroundColor = UIColor.black
-    static let secondaryBackgroundColor = UIColor.systemGray2
+    static let secondaryBackgroundColor = UIColor.systemGray
     static let primaryForegroundColor = UIColor.white
 }
