@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Adventure: Identifiable {
+class Adventure: Identifiable, ObservableObject {
     
     enum Name: String, CaseIterable {
         case classical = "The piano-owl", nature = "The magician's potion", cinematic = "The audition"
@@ -41,6 +41,15 @@ struct Adventure: Identifiable {
     let playlist: Playlist
     let cardImage: String
     let detailImage: String
+    @Published var isAdventureCompleted = false
+    
+    init(name: Adventure.Name, description: Description, playlist: Playlist, cardImage: String, detailImage: String) {
+        self.name = name
+        self.description = description
+        self.playlist = playlist
+        self.cardImage = cardImage
+        self.detailImage = detailImage
+    }
     
     static let sample = Adventure(name: Adventure.Name.classical, description: Description.classical, playlist: Playlist(playlistGenre: .classical), cardImage: Adventure.getImageAsset(forAdventure: Adventure.Name.classical, imageAsset: .card), detailImage: Adventure.getImageAsset(forAdventure: Adventure.Name.classical, imageAsset: .detail))
     
