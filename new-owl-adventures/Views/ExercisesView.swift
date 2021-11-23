@@ -25,17 +25,16 @@ struct ExercisesView: View {
                         ZStack(alignment: .topLeading) {
                             Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
                             VStack(alignment: .leading, spacing: 10) {
-                                VStack(alignment: .leading, spacing: 20) {
+                                VStack(alignment: .leading, spacing: 10) {
                                     Text("\(exercises[exercise].name.rawValue)")
-                                        .font(.system(size: 22, weight: .bold))
-                                        .padding(.top, 40)
+                                        .font(.system(size: 24))
+                                        .fontWeight(.semibold)
                                     Text("\(exercises[exercise].description.rawValue)")
-                                        .font(.system(size: 20, weight: .regular))
-                                        .multilineTextAlignment(.leading)
-                                        .lineLimit(nil)
-                                        .fixedSize(horizontal: false, vertical: true)
+                                        .font(.system(size: 18))
+                                        .fontWeight(.regular)
                                 }
-                                .padding(.leading, 20)
+                                .padding(.top, 24)
+                                .padding(.horizontal, 20)
                                 if exercises[exercise].name == .breathe {
                                     VStack {
                                         HStack {
@@ -43,7 +42,7 @@ struct ExercisesView: View {
                                             ZStack {
                                                 Circle()
                                                     .trim(from: 0, to: 1)
-                                                    .stroke(Color.black.opacity(0.09), style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                                                    .stroke(Color.white.opacity(0.09), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                                                     .frame(width: 300, height: 300)
                                                 Circle()
                                                     .trim(from: 0, to: self.to)
@@ -61,6 +60,7 @@ struct ExercisesView: View {
                                                 withAnimation { self.selectedPage += 1 }
                                             } else {
                                                 self.start.toggle()
+                                                self.buttonLabel = "Let's breathe!"
                                             }}, label: {
                                                 Text("\(buttonLabel)")
                                                     .frame(width: 300, height: 56, alignment: .center)
@@ -117,6 +117,7 @@ struct ExercisesView: View {
         .onReceive(self.timer) { (_) in
             if self.start {
                 if self.count != 30 {
+                    self.buttonLabel = "Pause"
                     self.count += 1
                     if count == 30 {
                         self.buttonLabel = "Next exercise"
