@@ -18,7 +18,7 @@ struct Playlist {
     }
     
     enum Mood: String, CaseIterable  {
-        case all, happy, sad, stressed, tired, demotivated, energetic
+        case happy, sad, stressed, tired, demotivated, energetic
     }
     
     let genre: Genre
@@ -32,13 +32,13 @@ struct Playlist {
         
         switch playlistGenre {
         case .classical:
-            self.moodTags = [Mood.all, Mood.happy, Mood.energetic]
+            self.moodTags = [Mood.happy, Mood.energetic]
 
         case .nature:
-            self.moodTags = [Mood.all, Mood.stressed, Mood.sad]
+            self.moodTags = [Mood.stressed, Mood.sad]
         
         case .cinematic:
-            self.moodTags = [Mood.all, Mood.happy, Mood.demotivated, Mood.tired]
+            self.moodTags = [Mood.happy, Mood.demotivated, Mood.tired]
         }
     }
     
