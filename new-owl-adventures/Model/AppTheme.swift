@@ -8,7 +8,6 @@
 import SwiftUI
 
 enum AppTheme {
-    
     static let accentColor = UIColor.systemYellow
     static let primaryBackgroundColor = UIColor.black
     static let secondaryBackgroundColor = UIColor.systemGray
