@@ -10,7 +10,7 @@ import SwiftUI
 struct AdventureCompletedView: View {
     @Environment(\.presentationMode) var PresentationMode
 
-    let adventure: Adventure
+    @EnvironmentObject var adventure: Adventure
     
     var completedAdventureText: String {
         
@@ -67,6 +67,7 @@ struct AdventureCompletedView: View {
             .toolbar {
                 Button("Done") {
                     PresentationMode.wrappedValue.dismiss()
+                    adventure.isAdventureCompleted = true
                 }
             }
         }
@@ -75,6 +76,6 @@ struct AdventureCompletedView: View {
 
 struct AdventureCompletedView_Previews: PreviewProvider {
     static var previews: some View {
-        AdventureCompletedView(adventure: Adventure.sample)
+        AdventureCompletedView().environmentObject(Adventure.sample)
     }
 }
