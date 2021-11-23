@@ -9,28 +9,51 @@ import SwiftUI
 
 struct AdventuresView: View {
     @State private var searchText = ""
-    @State private var selectedMood = ""
 
     private let adventures = Adventures().list
     
-    // store search adventures matching name
+    // store search adventures matching name or mood
     private var searchAdventures: [Adventure] {
+        var filteredAdventures: [Adventure]
+        
         if searchText.isEmpty {
             return adventures
         
         } else {
-            return adventures.filter { adventure in
-                adventure.name.rawValue.contains(searchText)
+            
+            // match by adventure name
+            filteredAdventures = adventures.filter { adventure in
+                adventure.name.rawValue.lowercased().contains(searchText.lowercased())
+            }
+            
+            // match by mood
+            if filteredAdventures.isEmpty {
+                filteredAdventures = adventures.filter { adventure in
+                    adventure.playlist.moodTags.contains(where: { $0.rawValue.contains(searchText) } )
+                }
             }
         }
+        
+        return filteredAdventures
     }
     
     // list of search suggestions
-    var searchSuggestions: [String] {
+    private var searchSuggestions: [String] {
         var names = [String]()
         adventures.forEach { names.append($0.name.rawValue) }
         return names
     }
+    
+    // list of moods
+    private let moodsFilter: [Playlist.Mood] = {
+        var items = [Playlist.Mood]()
+        
+        Playlist.Mood.allCases.forEach { mood in
+            items.append(mood)
+        }
+        
+        return items
+    }()
     
     var body: some View {
         
@@ -48,9 +71,11 @@ struct AdventuresView: View {
                 .padding(.horizontal)
             }
             .background(Color(AppTheme.primaryBackgroundColor))
-            .searchable(text: $searchText) {
-                ForEach(searchSuggestions, id: \.self) { name in
-                    Text(name).searchCompletion(name)
+            .searchable(text: $searchText, prompt: "Search adventure name or mood") {
+
+                // filter list by moood
+                ForEach(moodsFilter, id: \.self) { mood in
+                    Text(mood.rawValue.capitalized).searchCompletion(mood.rawValue)
                 }
             }
             .navigationTitle("Adventures")
