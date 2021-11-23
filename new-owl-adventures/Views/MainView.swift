@@ -33,7 +33,6 @@ struct MainView: View {
                 }
                 .tag(2)
         }
-        
         .onAppear {
             UITabBar.appearance().unselectedItemTintColor = AppTheme.secondaryBackgroundColor
         }
