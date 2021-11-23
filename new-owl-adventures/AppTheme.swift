@@ -12,6 +12,10 @@ enum AppTheme {
     static let primaryBackgroundColor = UIColor.black
     static let secondaryBackgroundColor = UIColor.systemGray
     static let primaryForegroundColor = UIColor.white
+    static let gradient = [
+        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 0.7),
+        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 0)
+    ]
 }
 
 struct TitleFont: ViewModifier {
