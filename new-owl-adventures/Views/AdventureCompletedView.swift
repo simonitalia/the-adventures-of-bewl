@@ -64,10 +64,14 @@ struct AdventureCompletedView: View {
                     .padding(65)
             }
             .navigationBarTitleDisplayMode(.inline) //small navigation bar
+            
+            .onDisappear {
+                adventure.isAdventureCompleted = true
+            }
+            
             .toolbar {
                 Button("Done") {
                     PresentationMode.wrappedValue.dismiss()
-                    adventure.isAdventureCompleted = true
                 }
             }
         }
