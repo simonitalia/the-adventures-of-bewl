@@ -93,21 +93,16 @@ struct AwardsView: View {
                 }
                 
             }
-            
-            
-        }.navigationTitle("Awards")
-           
-                
-                
-            }
-    
         }
-    
+        .navigationTitle("Awards")
+        .navigationBarTitleDisplayMode(.large)
+           
+        }
+    }
 }
 
 struct AwardsView_Previews: PreviewProvider {
     static var previews: some View {
         AwardsView()
-            .preferredColorScheme(.dark)
     }
 }
