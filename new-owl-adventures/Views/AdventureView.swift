@@ -99,14 +99,12 @@ struct AdventureView: View {
             ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 10) {
                 Text("\(adventure.playlist.genre.rawValue)")
-                    .font(.system(size: 24))
-                    .fontWeight(.semibold)
+                    .modifier(TitleFont())
                     .padding(.bottom, 2)
                     .padding(.horizontal, 20)
                 
                 Text("\(adventure.description.rawValue)")
-                    .font(.system(size: 18))
-                    .fontWeight(.regular)
+                    .modifier(BodyFont())
                     .padding(.bottom, 8)
                     .padding(.horizontal, 20)
                 
@@ -120,12 +118,10 @@ struct AdventureView: View {
                 // timer container
                 HStack {
                     Text("Would you like to set a Timer?")
-                        .font(.system(size: 18))
-                        .fontWeight(.regular)
+                        .modifier(BodyFont())
                     Spacer()
                     Text("0:00")
-                        .font(.system(size: 18))
-                        .fontWeight(.regular)
+                        .modifier(BodyFont())
                         .foregroundColor(Color(AppTheme.accentColor))
                         .padding(8)
                         .overlay(
@@ -169,8 +165,7 @@ struct AdventureView: View {
                                     .shadow(color: Color.black.opacity(1), radius: 4, x: 2, y: 2)
                                     .padding(.leading, 20)
                                 Text(adventure.name.rawValue)
-                                    .font(.system(size: 18))
-                                    .fontWeight(.regular)
+                                    .modifier(BodyFont())
                                     .padding(.leading, 10)
                                 Spacer()
                             }

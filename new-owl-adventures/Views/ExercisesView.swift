@@ -27,11 +27,9 @@ struct ExercisesView: View {
                             VStack(alignment: .leading, spacing: 10) {
                                 VStack(alignment: .leading, spacing: 10) {
                                     Text("\(exercises[exercise].name.rawValue)")
-                                        .font(.system(size: 24))
-                                        .fontWeight(.semibold)
+                                        .modifier(TitleFont())
                                     Text("\(exercises[exercise].description.rawValue)")
-                                        .font(.system(size: 18))
-                                        .fontWeight(.regular)
+                                        .modifier(BodyFont())
                                 }
                                 .padding(.top, 24)
                                 .padding(.horizontal, 20)
@@ -42,7 +40,7 @@ struct ExercisesView: View {
                                             ZStack {
                                                 Circle()
                                                     .trim(from: 0, to: 1)
-                                                    .stroke(Color.white.opacity(0.09), style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                                                    .stroke(Color.white.opacity(0.2), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                                                     .frame(width: 300, height: 300)
                                                 Circle()
                                                     .trim(from: 0, to: self.to)
