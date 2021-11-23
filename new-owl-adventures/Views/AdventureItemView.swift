@@ -10,6 +10,10 @@ import SwiftUI
 struct AdventureItemView: View {
     
     let adventure: Adventure
+    let gradient = [
+        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 1),
+        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 0)
+    ]
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -17,7 +21,7 @@ struct AdventureItemView: View {
                 .resizable()
                 .scaledToFill()
                 .overlay() {
-                    Color.black.opacity(0.1)
+                    LinearGradient(colors: gradient, startPoint: .bottom, endPoint: .center)
                 }
             VStack {
                 
@@ -38,9 +42,12 @@ struct AdventureItemView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Spacer()
                         Text("\(adventure.name.rawValue)")
-                            .font(.system(size: 22, weight: .bold, design: .serif))
+                            .font(.system(size: 24))
+                            .fontWeight(.semibold)
+                            .padding(.bottom, 2)
                         Text("\(adventure.playlist.genre.rawValue)")
-                            .font(.system(size: 20, weight: .regular, design: .serif))
+                            .font(.system(size: 18))
+                            .fontWeight(.regular)
                     }
                     Spacer()
                 }
