@@ -23,45 +23,41 @@ struct AdventureView: View {
         }
     }
     
-    @State private var hasAdventureStarted = false
-    
     //animation properties
-    private enum BewlAnimation {
-        enum notPlayingImage: String, CaseIterable {
+    private enum BewlAnimationImage {
+        enum notPlaying: String, CaseIterable {
             case eyesOpen = "bewl-eyes-open-wings-down"
             case eyesClosed = "bewl-eyes-closed-wings-down"
         }
         
-        enum isPlayingImage: String, CaseIterable {
+        enum isPlaying: String, CaseIterable {
             case eyesClosedWingsDown = "bewl-eyes-closed-wings-down"
-//            case eyesOpenWingsDown = "bewl-eyes-open-wings-down"
             case eyesOpenRightWingUp = "bewl-eyes-open-right-wing-up"
             case eyesOpenLeftWingUp = "bewl-eyes-open-left-wing-up"
             case eyesClosedRightWingUp = "bewl-eyes-closed-right-wing-up"
         }
     }
     
-    private let bewlNotPlayingImageSet: [BewlAnimation.notPlayingImage] = {
-        var images = [BewlAnimation.notPlayingImage]()
+    private let bewlNotPlayingImageSet: [BewlAnimationImage.notPlaying] = {
+        var images = [BewlAnimationImage.notPlaying]()
         
-        BewlAnimation.notPlayingImage.allCases.forEach {
+        BewlAnimationImage.notPlaying.allCases.forEach {
             images.append($0)
         }
         
         return images
     }()
     
-    private let bewlIsPlayingImageSet: [BewlAnimation.isPlayingImage] = {
-        var images = [BewlAnimation.isPlayingImage]()
+    private let bewlIsPlayingImageSet: [BewlAnimationImage.isPlaying] = {
+        var images = [BewlAnimationImage.isPlaying]()
         
-        BewlAnimation.isPlayingImage.allCases.forEach {
+        BewlAnimationImage.isPlaying.allCases.forEach {
             images.append($0)
         }
         
         return images
     }()
     
-   
     @State var toggleNotPlayingImage = false
     private var currentBewlImage: String {
         
@@ -170,7 +166,7 @@ struct AdventureView: View {
                             
                             Button(action: {
                                 isPlaying.toggle()
-                                hasAdventureStarted = true
+                                adventure.isAdventureInProgress = true
 
                             }) {
                                 let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
@@ -190,22 +186,32 @@ struct AdventureView: View {
         }
         .navigationTitle(adventure.name.rawValue)
         
+        .onAppear {
+            musicPlayer = MusicPlayer(playlistUrl: adventure.playlist.url)
+        }
+        
+        .onChange(of: adventure.isAdventureCompleted) { _ in
+            if adventure.isAdventureCompleted {
+                PresentationMode.wrappedValue.dismiss()
+            }
+        }
+        
+        .onDisappear {
+            adventure.isAdventureCompleted = false
+        }
+        
         // navigation view toolbar button and presentation action
         .toolbar {
             Button("End Adventure") {
                 isPlaying = false
                 isPresenting = true
-                hasAdventureStarted = false
+                    // trigger presentation of adventure completed view
             }
-            .disabled(!hasAdventureStarted)
+            .disabled(!adventure.isAdventureInProgress)
             
             .fullScreenCover(isPresented: $isPresenting) {
                 AdventureCompletedView().environmentObject(adventure)
             }
-        }
-        
-        .onAppear {
-            musicPlayer = MusicPlayer(playlistUrl: adventure.playlist.url)
         }
     }
 }
