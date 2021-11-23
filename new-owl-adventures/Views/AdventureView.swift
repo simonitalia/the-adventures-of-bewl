@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AdventureView: View {
+    @Environment(\.presentationMode) var PresentationMode
     @State private var isPresenting = false
     @State private var musicPlayer: MusicPlayer?
     
@@ -76,7 +77,8 @@ struct AdventureView: View {
     
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
 
-    let adventure: Adventure
+    @StateObject var adventure: Adventure
+        //@StateObject places object into environemnt
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -198,7 +200,7 @@ struct AdventureView: View {
             .disabled(!hasAdventureStarted)
             
             .fullScreenCover(isPresented: $isPresenting) {
-                AdventureCompletedView(adventure: adventure)
+                AdventureCompletedView().environmentObject(adventure)
             }
         }
         
