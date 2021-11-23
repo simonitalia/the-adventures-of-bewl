@@ -25,6 +25,7 @@
 		2ADB009C27455ACB00099364 /* Award.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB009B27455ACB00099364 /* Award.swift */; };
 		2ADB00AF274562BE00099364 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADB00AE274562BE00099364 /* MusicPlayer.swift */; };
 		2AFD93A1274A799000F293E0 /* AdventureCompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD93A0274A799000F293E0 /* AdventureCompletedView.swift */; };
+		D830B3CB274C797000BE9BE8 /* FloatingOwl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D830B3CA274C797000BE9BE8 /* FloatingOwl.swift */; };
 		D85C27D62745B192002B3902 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C27D52745B192002B3902 /* SearchBarView.swift */; };
 		D8FC42DA2745C3E600E1BB85 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC42D92745C3E600E1BB85 /* MainView.swift */; };
 		D8FC42E0274695DE00E1BB85 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC42DF274695DE00E1BB85 /* FilterView.swift */; };
@@ -51,6 +52,7 @@
 		2ADB00AE274562BE00099364 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		2ADB00B02745640800099364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2AFD93A0274A799000F293E0 /* AdventureCompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventureCompletedView.swift; sourceTree = "<group>"; };
+		D830B3CA274C797000BE9BE8 /* FloatingOwl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingOwl.swift; sourceTree = "<group>"; };
 		D85C27D52745B192002B3902 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		D8FC42D92745C3E600E1BB85 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D8FC42DF274695DE00E1BB85 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				2A916B632746EC6A0004D2B6 /* AwardsView.swift */,
 				D85C27D52745B192002B3902 /* SearchBarView.swift */,
 				D8FC42DF274695DE00E1BB85 /* FilterView.swift */,
+				D830B3CA274C797000BE9BE8 /* FloatingOwl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D830B3CB274C797000BE9BE8 /* FloatingOwl.swift in Sources */,
 				2ADB008C2745598E00099364 /* AdventuresView.swift in Sources */,
 				D8FC42DA2745C3E600E1BB85 /* MainView.swift in Sources */,
 				D8FC42E0274695DE00E1BB85 /* FilterView.swift in Sources */,
@@ -371,7 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"new-owl-adventures/Preview Content\"";
-				DEVELOPMENT_TEAM = ZAAMW68LZ8;
+				DEVELOPMENT_TEAM = 3GWJJ878N9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
@@ -387,7 +391,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.bewl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.vitaly.bewl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -403,7 +407,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"new-owl-adventures/Preview Content\"";
-				DEVELOPMENT_TEAM = ZAAMW68LZ8;
+				DEVELOPMENT_TEAM = 3GWJJ878N9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "new-owl-adventures/Info.plist";
@@ -419,7 +423,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.bewl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appledeveloperacademy.vitaly.bewl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
