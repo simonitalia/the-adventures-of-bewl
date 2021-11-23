@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdventureCompletedView: View {
     @Environment(\.presentationMode) var PresentationMode
-
+    
     @EnvironmentObject var adventure: Adventure
     
     var completedAdventureText: String {
@@ -23,13 +23,13 @@ struct AdventureCompletedView: View {
             
         case .cinematic:
             return "We did amazing team work!\nBewl was cast as the leading Ownl!"
-        
+            
         }
     }
     
     var completedAdventureImage: String {
         switch adventure.name {
-        
+            
         case .classical:
             return "pianoCompleted"
             
@@ -44,35 +44,42 @@ struct AdventureCompletedView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
-                Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
-                
-                Image(completedAdventureImage)
-                    .resizable()
-                    .scaledToFill()
-                    .overlay() {
-                        Color.black.opacity(0.1)
-                    }
-                
-                RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 400, height: 100, alignment: .center)
-                            .opacity(0.7)
-                            .padding(40)
-                
-                Text(completedAdventureText)
-                    .font(.system(size: 18, weight: .bold, design: .serif))
-                    .foregroundColor(Color(AppTheme.primaryForegroundColor))
-                    .padding(65)
-            }
-            .navigationBarTitleDisplayMode(.inline) //small navigation bar
-            
-            .onDisappear {
-                adventure.isAdventureCompleted = true
-            }
-            
-            .toolbar {
-                Button("Done") {
-                    PresentationMode.wrappedValue.dismiss()
+                ZStack(alignment: .top) {
+                    Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
+                    
+                    Image(completedAdventureImage)
+                        .resizable()
+                        .scaledToFill()
+                        .overlay() {
+                            Color.black.opacity(0.15)
+                        }
                 }
+                .navigationBarTitleDisplayMode(.inline) //small navigation bar
+                
+                .onDisappear {
+                    adventure.isAdventureCompleted = true
+                }
+                
+                .toolbar {
+                    Button("Done") {
+                        PresentationMode.wrappedValue.dismiss()
+                    }
+                }
+                
+                ZStack(alignment: .center) {
+                    Color.black.opacity(0.7)
+                        .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                        .cornerRadius(20)
+                        .shadow(color: Color.black.opacity(0.4), radius: 24, x: 0, y: 12)
+                    
+                    Text(completedAdventureText)
+                        .modifier(BodyFont())
+                        .multilineTextAlignment(.center)
+                        .frame(width: UIScreen.main.bounds.width - 40, height: 100)
+                        .lineSpacing(10)
+                        .foregroundColor(Color(AppTheme.primaryForegroundColor))
+                }
+                .padding(.top, 60)
             }
         }
     }

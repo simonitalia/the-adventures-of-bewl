@@ -100,6 +100,7 @@
 			children = (
 				2ADB00B02745640800099364 /* Info.plist */,
 				2ADB00892745598E00099364 /* OwlAdventuresApp.swift */,
+				2A6F44A727472FCE0083F738 /* AppTheme.swift */,
 				2ADB009D27455AF500099364 /* Model */,
 				2ADB009E27455AFD00099364 /* Views */,
 				2ADB008D2745599000099364 /* Assets.xcassets */,
@@ -120,7 +121,6 @@
 		2ADB009D27455AF500099364 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2A6F44A727472FCE0083F738 /* AppTheme.swift */,
 				2A6F44AB2747D3240083F738 /* Playlist.swift */,
 				2ADB009727455A3200099364 /* Adventure.swift */,
 				2ADB009927455A9600099364 /* Exercise.swift */,

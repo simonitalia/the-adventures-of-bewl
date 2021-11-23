@@ -42,12 +42,10 @@ struct AdventureItemView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Spacer()
                         Text("\(adventure.name.rawValue)")
-                            .font(.system(size: 24))
-                            .fontWeight(.semibold)
+                            .modifier(TitleFont())
                             .padding(.bottom, 2)
                         Text("\(adventure.playlist.genre.rawValue)")
-                            .font(.system(size: 18))
-                            .fontWeight(.regular)
+                            .modifier(BodyFont())
                     }
                     Spacer()
                 }
