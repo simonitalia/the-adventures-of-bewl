@@ -42,7 +42,7 @@ struct Adventure: Identifiable {
     let cardImage: String
     let detailImage: String
     
-    static let sample = Adventure(name: Adventure.Name.nature, description: Description.nature, playlist: Playlist(playlistGenre: .nature), cardImage: Adventure.getImageAsset(forAdventure: Adventure.Name.nature, imageAsset: .card), detailImage: Adventure.getImageAsset(forAdventure: Adventure.Name.nature, imageAsset: .detail))
+    static let sample = Adventure(name: Adventure.Name.classical, description: Description.classical, playlist: Playlist(playlistGenre: .classical), cardImage: Adventure.getImageAsset(forAdventure: Adventure.Name.classical, imageAsset: .card), detailImage: Adventure.getImageAsset(forAdventure: Adventure.Name.classical, imageAsset: .detail))
     
     static func getImageAsset(forAdventure name: Adventure.Name, imageAsset type: ImageAsset.ImageType) -> String {
         

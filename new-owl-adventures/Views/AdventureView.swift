@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdventureView: View {
     @State private var isPresenting = false
-    @State var musicPlayer: MusicPlayer?
+    @State private var musicPlayer: MusicPlayer?
     
     @State var isPlaying: Bool = false {
         didSet {
@@ -22,12 +22,82 @@ struct AdventureView: View {
         }
     }
     
+    @State private var hasAdventureStarted = false
+    
+    //animation properties
+    private enum BewlAnimation {
+        enum notPlayingImage: String, CaseIterable {
+            case eyesOpen = "bewl-eyes-open-wings-down"
+            case eyesClosed = "bewl-eyes-closed-wings-down"
+        }
+        
+        enum isPlayingImage: String, CaseIterable {
+            case eyesClosedWingsDown = "bewl-eyes-closed-wings-down"
+//            case eyesOpenWingsDown = "bewl-eyes-open-wings-down"
+            case eyesOpenRightWingUp = "bewl-eyes-open-right-wing-up"
+            case eyesOpenLeftWingUp = "bewl-eyes-open-left-wing-up"
+            case eyesClosedRightWingUp = "bewl-eyes-closed-right-wing-up"
+        }
+    }
+    
+    private let bewlNotPlayingImageSet: [BewlAnimation.notPlayingImage] = {
+        var images = [BewlAnimation.notPlayingImage]()
+        
+        BewlAnimation.notPlayingImage.allCases.forEach {
+            images.append($0)
+        }
+        
+        return images
+    }()
+    
+    private let bewlIsPlayingImageSet: [BewlAnimation.isPlayingImage] = {
+        var images = [BewlAnimation.isPlayingImage]()
+        
+        BewlAnimation.isPlayingImage.allCases.forEach {
+            images.append($0)
+        }
+        
+        return images
+    }()
+    
+   
+    @State var toggleNotPlayingImage = false
+    private var currentBewlImage: String {
+        
+        switch isPlaying {
+            
+        case false: // current not playing image
+            return toggleNotPlayingImage ? bewlNotPlayingImageSet[0].rawValue : bewlNotPlayingImageSet[1].rawValue
+            
+        case true: // current playing image
+            return bewlIsPlayingImageSet.randomElement()?.rawValue ?? bewlIsPlayingImageSet[0].rawValue
+        }
+    }
+    
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+
     let adventure: Adventure
     
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .center) {
             Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
-        
+            
+            // Bewl classical adevnture image animation container
+            if adventure.name == Adventure.Name.classical {
+                ZStack {
+                    Image(currentBewlImage)
+   
+                }
+                .offset(x: 0, y: 100)
+                .zIndex(100)
+                
+                .onReceive(timer) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                        toggleNotPlayingImage.toggle()
+                    }
+                }
+            }
+            
             // Genre, description text container
             VStack(alignment: .leading, spacing: 10) {
                 Text("\(adventure.playlist.genre.rawValue)")
@@ -98,6 +168,7 @@ struct AdventureView: View {
                             
                             Button(action: {
                                 isPlaying.toggle()
+                                hasAdventureStarted = true
 
                             }) {
                                 let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
@@ -122,7 +193,9 @@ struct AdventureView: View {
             Button("End Adventure") {
                 isPlaying = false
                 isPresenting = true
+                hasAdventureStarted = false
             }
+            .disabled(!hasAdventureStarted)
             
             .fullScreenCover(isPresented: $isPresenting) {
                 AdventureCompletedView(adventure: adventure)
