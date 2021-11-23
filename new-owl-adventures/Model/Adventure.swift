@@ -42,6 +42,7 @@ class Adventure: Identifiable, ObservableObject {
     let cardImage: String
     let detailImage: String
     @Published var isAdventureCompleted = false
+    @Published var isAdventureInProgress = false
     
     init(name: Adventure.Name, description: Description, playlist: Playlist, cardImage: String, detailImage: String) {
         self.name = name
