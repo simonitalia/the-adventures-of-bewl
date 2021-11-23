@@ -16,7 +16,6 @@ struct AdventureView: View {
         didSet {
             if isPlaying {
                 musicPlayer?.audioPlayer.play()
-
             } else {
                 musicPlayer?.audioPlayer.pause()
             }
@@ -72,21 +71,21 @@ struct AdventureView: View {
     }
     
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-
+    
     @StateObject var adventure: Adventure
-        //@StateObject places object into environemnt
+    //@StateObject places object into environemnt
     
     var body: some View {
-        ZStack(alignment: .center) {
+        ZStack(alignment: .top) {
             Color(AppTheme.primaryBackgroundColor).edgesIgnoringSafeArea(.all)
             
             // Bewl classical adevnture image animation container
             if adventure.name == Adventure.Name.classical {
                 ZStack {
                     Image(currentBewlImage)
-   
+                    
                 }
-                .offset(x: 0, y: 100)
+                .offset(x: 0, y: 398)
                 .zIndex(100)
                 
                 .onReceive(timer) { _ in
@@ -97,93 +96,111 @@ struct AdventureView: View {
             }
             
             // Genre, description text container
+            ZStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 10) {
                 Text("\(adventure.playlist.genre.rawValue)")
-                    .font(.system(size: 22, weight: .bold, design: .serif))
-                    .padding(.horizontal)
-                    
+                    .font(.system(size: 24))
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 2)
+                    .padding(.horizontal, 20)
+                
                 Text("\(adventure.description.rawValue)")
-                    .font(.system(size: 20, weight: .regular, design: .serif))
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.horizontal)
-                   
+                    .font(.system(size: 18))
+                    .fontWeight(.regular)
+                    .padding(.bottom, 8)
+                    .padding(.horizontal, 20)
+                
                 Divider()
-                    Color(AppTheme.primaryForegroundColor)
                     .frame(maxHeight: 2)
-                    .padding(.horizontal)
+                    .background(Color(AppTheme.primaryForegroundColor))
+                    .padding(.bottom, 8)
+                    .padding(.horizontal, 20)
+                
                 
                 // timer container
-                HStack(alignment: .top) {
+                HStack {
                     Text("Would you like to set a Timer?")
-                        .font(.system(size: 18, weight: .regular, design: .serif))
+                        .font(.system(size: 18))
+                        .fontWeight(.regular)
                     Spacer()
                     Text("0:00")
-                        .foregroundColor(Color(AppTheme.accentColor))
-                        .padding(5)
-                        .overlay(RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color(AppTheme.accentColor), lineWidth: 2)
-                        )
                         .font(.system(size: 18))
+                        .fontWeight(.regular)
+                        .foregroundColor(Color(AppTheme.accentColor))
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color(AppTheme.accentColor), lineWidth: 2)
+                        )
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 20)
                 
-                VStack(alignment: .center, spacing: 10) {
-                    Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
+                Divider()
+                    .frame(height: 20)
+                
+                Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
                         .resizable()
-                        .scaledToFit()
+                        .aspectRatio(contentMode: .fit)
                         .overlay() {
-                            Color.black.opacity(0.1)
+                            Color.black.opacity(0.15)
                         }
                         .cornerRadius(20)
-
-                    // Music Controls Container
-                    ZStack {
-                        Rectangle()
-                            .opacity(0)
-                        .frame(width: UIScreen.main.bounds.size.width, height: 65)
+                        .padding(.horizontal, 20)
+            }
+            .foregroundColor(Color(AppTheme.primaryForegroundColor))
+            
+                // Music Controls Container
+                ZStack {
+                    Rectangle()
+                        .opacity(0)
                         .background(Color(AppTheme.primaryBackgroundColor))
                         .overlay() {
                             Color.white.opacity(0.1)
                         }
-                        
-                        // controls container
-                        HStack {
-                            Button(action: {}) {
-                                HStack {
-                                    Image(adventure.cardImage)
-                                        .resizable()
-                                        .frame(width: 45, height: 45)
-                                        .shadow(radius: 10, x: 0, y: 3)
-                                        .padding(.leading)
-                                    Text(adventure.name.rawValue)
-                                        .padding(.leading, 10)
-                                    Spacer()
-                                }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            
-                            Button(action: {
-                                isPlaying.toggle()
-                                adventure.isAdventureInProgress = true
 
-                            }) {
-                                let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
-                                Image(systemName: imageName)
-                                    .frame(width: 50, height: 50, alignment: .center)
-                               
+                    // controls container
+                    HStack {
+                        Button(action: {}) {
+                            HStack {
+                                Image(adventure.cardImage)
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                                    .cornerRadius(4)
+                                    .shadow(color: Color.black.opacity(1), radius: 4, x: 2, y: 2)
+                                    .padding(.leading, 20)
+                                Text(adventure.name.rawValue)
+                                    .font(.system(size: 18))
+                                    .fontWeight(.regular)
+                                    .padding(.leading, 10)
+                                Spacer()
                             }
-                            .buttonStyle(PlainButtonStyle())
-                            .padding(.horizontal)
                         }
+                        .buttonStyle(PlainButtonStyle())
+
+                        Button(action: {
+                            isPlaying.toggle()
+                            adventure.isAdventureInProgress = true
+
+                        }) {
+                            let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
+                            Image(systemName: imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 28, height: 28, alignment: .center)
+                                .padding(.trailing, 8)
+
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal)
                     }
-                    .foregroundColor(Color(AppTheme.accentColor))
                 }
+                .frame(height: 64)
+                .foregroundColor(Color(AppTheme.accentColor))
+                .cornerRadius(8)
+                
             }
-            .foregroundColor(Color(AppTheme.primaryForegroundColor))
-            
         }
+        .padding(.top, 24)
         .navigationTitle(adventure.name.rawValue)
         
         .onAppear {
