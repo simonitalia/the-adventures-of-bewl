@@ -75,7 +75,7 @@ struct AdventuresView: View {
 
                 // filter list by moood
                 ForEach(moodsFilter, id: \.self) { mood in
-                    Text(mood.rawValue.capitalized).searchCompletion(mood.rawValue)
+                    Text("I'm feeling \(mood.rawValue.capitalized)").searchCompletion(mood.rawValue)
                 }
             }
             .navigationTitle("Adventures")
