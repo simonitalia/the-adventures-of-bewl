@@ -10,10 +10,6 @@ import SwiftUI
 struct AdventureItemView: View {
     
     let adventure: Adventure
-    let gradient = [
-        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 1),
-        Color.init(red: 0/255, green: 0/255, blue: 0/255, opacity: 0)
-    ]
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -21,7 +17,7 @@ struct AdventureItemView: View {
                 .resizable()
                 .scaledToFill()
                 .overlay() {
-                    LinearGradient(colors: gradient, startPoint: .bottom, endPoint: .center)
+                    LinearGradient(colors: AppTheme.gradient, startPoint: .bottom, endPoint: .center)
                 }
             VStack {
                 

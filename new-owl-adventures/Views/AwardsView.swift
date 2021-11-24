@@ -21,12 +21,13 @@ struct AwardsView: View {
                         Image("forest")
                             .resizable()
                             .scaledToFill()
+                            .blur(radius: 8)
                             .frame(height: 160, alignment: .top)
-                            .clipped()
                             .cornerRadius(20)
+                            .clipped()
                             .padding(.top, 16)
                             .overlay() {
-                                Color.black.opacity(0.5)
+                                Color.black.opacity(0.35)
                             }
                         
                         VStack(alignment: .leading, spacing: 8){
@@ -49,12 +50,13 @@ struct AwardsView: View {
                         Image("piano")
                             .resizable()
                             .scaledToFill()
+                            .blur(radius: 8)
                             .frame(height: 160, alignment: .top)
-                            .clipped()
                             .cornerRadius(20)
+                            .clipped()
                             .padding(.top, 16)
                             .overlay() {
-                                Color.black.opacity(0.5)
+                                Color.black.opacity(0.35)
                             }
                         
                         VStack(alignment: .leading, spacing: 8){
@@ -82,7 +84,7 @@ struct AwardsView: View {
                             .cornerRadius(20)
                             .padding(.top, 16)
                             .overlay() {
-                                Color.black.opacity(0.6)
+                                Color.black.opacity(0.3)
                             }
                         
                         VStack(alignment: .leading, spacing: 8){
@@ -103,7 +105,7 @@ struct AwardsView: View {
                             .cornerRadius(20)
                             .padding(.top, 16)
                             .overlay() {
-                                Color.black.opacity(0.6)
+                                Color.black.opacity(0.3)
                             }
                         
                         VStack(alignment: .leading, spacing: 8){
