@@ -9,40 +9,22 @@ import Foundation
 import AVFoundation
 import SwiftUI
 
-class MusicPlayer: ObservableObject {
+struct MusicPlayer {
     
-    private let playlistUrl: URL
+    let playlist: Playlist
     var audioPlayer: AVAudioPlayer
-    var isPlaying = false
     
-    init(playlistUrl: URL) {
-        self.playlistUrl = playlistUrl
-        
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        try? AVAudioSession.sharedInstance().setActive(true)
+    init(playlist: Playlist, numberOfLoops: Int = 1) {
+        self.playlist = playlist
         
         do {
-            self.audioPlayer = try AVAudioPlayer(contentsOf: playlistUrl)
-            self.audioPlayer.numberOfLoops = -1
+            audioPlayer = try AVAudioPlayer(contentsOf: playlist.url)
+            audioPlayer.numberOfLoops = numberOfLoops
+            audioPlayer.prepareToPlay()
             
         } catch {
             fatalError(error.localizedDescription)
                 //force app crash
         }
-    }
-    
-    func playMusic() {
-        audioPlayer.play()
-        isPlaying = true
-    }
-    
-    func pauseMusic() {
-        audioPlayer.pause()
-        isPlaying = false
-    }
-    
-    func stopMusic() {
-        audioPlayer.stop()
-        isPlaying = false
     }
 }
