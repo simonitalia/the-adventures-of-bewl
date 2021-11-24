@@ -73,7 +73,7 @@ struct AdventureView: View {
                     Image(currentBewlImage)
                     
                 }
-                .offset(x: 0, y: 398)
+                .offset(x: 0, y: 410)
                 .zIndex(100)
                 
                 .onReceive(timer) { _ in
@@ -85,7 +85,6 @@ struct AdventureView: View {
             
             // Genre, description text container
             ZStack(alignment: .bottom) {
-                ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("\(adventure.playlist.genre.rawValue)")
                             .modifier(TitleFont())
@@ -135,7 +134,6 @@ struct AdventureView: View {
                             .padding(.horizontal, 20)
                     }
                     .foregroundColor(Color(AppTheme.primaryForegroundColor))
-                }
                 
                 // Music Controls Container
                 ZStack {
