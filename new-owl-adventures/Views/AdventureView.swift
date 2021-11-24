@@ -9,18 +9,9 @@ import SwiftUI
 
 struct AdventureView: View {
     @Environment(\.presentationMode) var PresentationMode
+    @StateObject var adventure: Adventure
     @State private var isPresenting = false
     @State private var musicPlayer: MusicPlayer?
-    
-    @State var isPlaying: Bool = false {
-        didSet {
-            if isPlaying {
-                musicPlayer?.audioPlayer.play()
-            } else {
-                musicPlayer?.audioPlayer.pause()
-            }
-        }
-    }
     
     //animation properties
     private enum BewlAnimationImage {
@@ -57,23 +48,20 @@ struct AdventureView: View {
         return images
     }()
     
-    @State var toggleNotPlayingImage = false
+    @State private var toggleNotPlayingImage = false
     private var currentBewlImage: String {
         
-        switch isPlaying {
-            
-        case false: // current not playing image
-            return toggleNotPlayingImage ? bewlNotPlayingImageSet[0].rawValue : bewlNotPlayingImageSet[1].rawValue
+        switch musicPlayer?.audioPlayer.isPlaying {
             
         case true: // current playing image
             return bewlIsPlayingImageSet.randomElement()?.rawValue ?? bewlIsPlayingImageSet[0].rawValue
+            
+        default: // current not playing image
+            return toggleNotPlayingImage ? bewlNotPlayingImageSet[0].rawValue : bewlNotPlayingImageSet[1].rawValue
         }
     }
     
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    
-    @StateObject var adventure: Adventure
-    //@StateObject places object into environemnt
+    private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -173,11 +161,17 @@ struct AdventureView: View {
                         .buttonStyle(PlainButtonStyle())
 
                         Button(action: {
-                            isPlaying.toggle()
+                            if musicPlayer?.audioPlayer.isPlaying == true {
+                                musicPlayer?.audioPlayer.pause()
+                        
+                            } else {
+                                musicPlayer?.audioPlayer.play()
+                            }
+                            
                             adventure.isAdventureInProgress = true
 
                         }) {
-                            let imageName = isPlaying ? "pause.circle.fill" : "play.circle.fill"
+                            let imageName = musicPlayer?.audioPlayer.isPlaying == true ? "pause.circle.fill" : "play.circle.fill"
                             Image(systemName: imageName)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -199,7 +193,7 @@ struct AdventureView: View {
         .navigationTitle(adventure.name.rawValue)
         
         .onAppear {
-            musicPlayer = MusicPlayer(playlistUrl: adventure.playlist.url)
+            musicPlayer = MusicPlayer(playlist: adventure.playlist)
         }
         
         .onChange(of: adventure.isAdventureCompleted) { _ in
@@ -215,7 +209,7 @@ struct AdventureView: View {
         // navigation view toolbar button and presentation action
         .toolbar {
             Button("End Adventure") {
-                isPlaying = false
+                musicPlayer?.audioPlayer.stop()
                 isPresenting = true
                     // trigger presentation of adventure completed view
             }
