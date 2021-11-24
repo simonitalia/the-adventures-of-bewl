@@ -85,54 +85,58 @@ struct AdventureView: View {
             
             // Genre, description text container
             ZStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("\(adventure.playlist.genre.rawValue)")
-                    .modifier(TitleFont())
-                    .padding(.bottom, 2)
-                    .padding(.horizontal, 20)
-                
-                Text("\(adventure.description.rawValue)")
-                    .modifier(BodyFont())
-                    .padding(.bottom, 20)
-                    .padding(.horizontal, 20)
-                
-                Divider()
-                    .frame(maxHeight: 2)
-                    .background(Color(AppTheme.primaryForegroundColor))
-                    .padding(.bottom, 8)
-                    .padding(.horizontal, 20)
-                
-                
-                // timer container
-                HStack {
-                    Text("Would you like to set a Timer?")
-                        .modifier(BodyFont())
-                    Spacer()
-                    Text("0:00")
-                        .modifier(BodyFont())
-                        .foregroundColor(Color(AppTheme.accentColor))
-                        .padding(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4)
-                                .stroke(Color(AppTheme.accentColor), lineWidth: 2)
-                        )
-                }
-                .padding(.horizontal, 20)
-                
-                Divider()
-                    .frame(height: 20)
-                
-                Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .overlay() {
-                            Color.black.opacity(0.15)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("\(adventure.playlist.genre.rawValue)")
+                            .modifier(TitleFont())
+                            .padding(.bottom, 2)
+                            .padding(.horizontal, 20)
+                        
+                        Text("\(adventure.description.rawValue)")
+                            .modifier(BodyFont())
+                            .padding(.bottom, 20)
+                            .padding(.horizontal, 20)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        Divider()
+                            .frame(maxHeight: 2)
+                            .background(Color(AppTheme.primaryForegroundColor))
+                            .padding(.bottom, 8)
+                            .padding(.horizontal, 20)
+                        
+                        
+                        // timer container
+                        HStack {
+                            Text("Would you like to set a Timer?")
+                                .modifier(BodyFont())
+                            Spacer()
+                            Text("0:00")
+                                .modifier(BodyFont())
+                                .foregroundColor(Color(AppTheme.accentColor))
+                                .padding(8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 4)
+                                        .stroke(Color(AppTheme.accentColor), lineWidth: 2)
+                                )
                         }
-                        .cornerRadius(20)
                         .padding(.horizontal, 20)
-            }
-            .foregroundColor(Color(AppTheme.primaryForegroundColor))
-            
+                        
+                        Divider()
+                            .frame(height: 20)
+                        
+                        Image(Adventure.getImageAsset(forAdventure: adventure.name, imageAsset: .detail))
+                            .frame(maxWidth: .infinity)
+                            .clipped()
+                            .scaledToFill()
+                            .overlay() {
+                                Color.black.opacity(0.15)
+                            }
+                            .cornerRadius(20)
+                            .padding(.horizontal, 20)
+                    }
+                    .foregroundColor(Color(AppTheme.primaryForegroundColor))
+                }
+                
                 // Music Controls Container
                 ZStack {
                     Rectangle()
@@ -141,7 +145,7 @@ struct AdventureView: View {
                         .overlay() {
                             Color.white.opacity(0.1)
                         }
-
+                    
                     // controls container
                     HStack {
                         Button(action: {}) {
@@ -159,17 +163,17 @@ struct AdventureView: View {
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
-
+                        
                         Button(action: {
                             if musicPlayer?.audioPlayer.isPlaying == true {
                                 musicPlayer?.audioPlayer.pause()
-                        
+                                
                             } else {
                                 musicPlayer?.audioPlayer.play()
                             }
                             
                             adventure.isAdventureInProgress = true
-
+                            
                         }) {
                             let imageName = musicPlayer?.audioPlayer.isPlaying == true ? "pause.circle.fill" : "play.circle.fill"
                             Image(systemName: imageName)
@@ -177,13 +181,13 @@ struct AdventureView: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 28, height: 28, alignment: .center)
                                 .padding(.trailing, 8)
-
+                            
                         }
                         .buttonStyle(PlainButtonStyle())
                         .padding(.horizontal)
                     }
                 }
-                .frame(height: 64)
+                .frame(maxHeight: 64)
                 .foregroundColor(Color(AppTheme.accentColor))
                 .cornerRadius(8)
                 
@@ -211,7 +215,7 @@ struct AdventureView: View {
             Button("End Adventure") {
                 musicPlayer?.audioPlayer.stop()
                 isPresenting = true
-                    // trigger presentation of adventure completed view
+                // trigger presentation of adventure completed view
             }
             .disabled(!adventure.isAdventureInProgress)
             
